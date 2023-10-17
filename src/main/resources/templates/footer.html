@@ -1,3 +1,4 @@
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
 <!-- Footer Section Begin -->
 <section class="footer-section">
   <div class="container">
@@ -9,7 +10,7 @@
           </div>
           <p>Embrace the Challenge, Transform Your Physique. With Grit Strength program, you are bound to conquer any challenges.</p>
           <div class="fa-social">
-            <a href="http://www.tiktok.com/@_.grit" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             <a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
             <a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
             <a href="https://m.facebook.com/grit.dominate" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -21,40 +22,51 @@
           <h4>Useful links</h4>
           <ul>
             <li><a href="/about-us">About</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/class-details">Programs</a></li>
+<!--            <li><a href="/blog">Blog</a></li>-->
+            <li><a href="/services">Services</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-6">
         <div class="fs-widget">
-          <h4>Support</h4>
+          <h4>Socials</h4>
           <ul>
-            <li><a href="/registration">Login</a></li>
-            <li><a href="/registration">My account</a></li>
-            <li><a href="#">Subscribe</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="https://m.facebook.com/grit.dominate" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/grit.dominate/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank">Tiktok</a></li>
+            <li><a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank">Youtube</a></li>
           </ul>
         </div>
       </div>
       <div class="col-lg-4 col-md-6">
         <div class="fs-widget">
-          <h4>Tips & Guides</h4>
-          <div class="fw-recent">
-            <h6><a href="#">Physical fitness may help prevent depression, anxiety</a></h6>
-            <ul>
-              <li>3 min read</li>
-              <li>20 Comment</li>
-            </ul>
-          </div>
-          <div class="fw-recent">
-            <h6><a href="#">Fitness: The best exercise to lose belly fat and tone up...</a></h6>
-            <ul>
-              <li>3 min read</li>
-              <li>20 Comment</li>
-            </ul>
-          </div>
+          <h4>Sign up for Grit Dominate Newsletter</h4>
+        </div>
+        <div class="leave-comment">
+          <form th:action="@{/newsletterSignup}" method="post">
+            <span id="email-error" style="color: red;"></span>
+            <input type="email" id="email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address" required>
+            <script>
+              function validateEmail() {
+				  var emailInput = document.getElementById('email');
+				  var emailError = document.getElementById('email-error');
+				  var email = emailInput.value;
+
+				  var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+				  if (!emailPattern.test(email)) {
+					  emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
+					  emailInput.focus();
+					  return false;
+				  } else {
+					  emailError.textContent = '';
+					  return true;
+				  }
+			  }
+            </script>
+            <button type="submit" onclick="validateEmail(); return false;">Sign Up</button>
+          </form>
         </div>
       </div>
     </div>

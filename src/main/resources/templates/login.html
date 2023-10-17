@@ -7,7 +7,7 @@
 	<meta name="keywords" content="Gym, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Grit - Strength</title>
+	<title>Registration - Grit Dominate</title>
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -44,18 +44,18 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			<li><a href="/about-us">About Us</a></li>
-			<li><a href="/classes">Programs</a></li>
+			<!--                <li><a href="/classes">Programs</a></li>-->
 			<li><a href="/services">Services</a></li>
-			<li><a href="/team">Our Team</a></li>
+			<li><a href="/team">Shop</a></li>
 			<li><a href="#">Pages</a>
 				<ul class="dropdown">
 					<li><a href="/about-us">About us</a></li>
 					<li><a href="/class-timetable">Programs timetable</a></li>
 					<li><a href="/bmi-calculator">Bmi calculate</a></li>
-					<li><a href="/team">Our team</a></li>
+					<li><a href="/team">Shop</a></li>
 					<li><a href="/gallery">Gallery</a></li>
 					<li><a href="/blog">Our blog</a></li>
-					<li><a href="/404">404</a></li>
+					<!--                        <li><a href="/404">404</a></li>-->
 				</ul>
 			</li>
 			<li><a href="/contact">Contact</a></li>
@@ -64,7 +64,7 @@
 	<div id="mobile-menu-wrap"></div>
 	<div class="canvas-social">
 
-		<a href="http://www.tiktok.com/@_.grit" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+		<a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
 		<a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
 		<a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
 		<a href="https://m.facebook.com/grit.dominate"><i class="fa fa-facebook"></i></a>
@@ -88,18 +88,18 @@
 					<ul>
 						<li><a href="/">Home</a></li>
 						<li><a href="/about-us">About Us</a></li>
-						<li><a href="/class-details">Programs</a></li>
+						<!--                            <li><a href="/class-details">Programs</a></li>-->
 						<li><a href="/services">Services</a></li>
-						<li><a href="/team">Our Team</a></li>
+						<li><a href="/team">Shop</a></li>
 						<li><a href="#">Pages</a>
 							<ul class="dropdown">
-								<li><a href="/about-us">About us</a></li>
+								<!--                                    <li><a href="/about-us">About us</a></li>-->
 								<li><a href="/class-timetable">Programs timetable</a></li>
 								<li><a href="/bmi-calculator">Bmi calculate</a></li>
-								<li><a href="/team">Our team</a></li>
+								<!--                                    <li><a href="/team">Shop</a></li>-->
 								<li><a href="/gallery">Gallery</a></li>
 								<li><a href="/blog">Our blog</a></li>
-								<li><a href="/404">404</a></li>
+								<!--                                    <li><a href="/404">404</a></li>-->
 							</ul>
 						</li>
 						<li class="active"><a href="contact">Contact</a></li>
@@ -109,10 +109,11 @@
 			<div class="col-lg-3">
 				<div class="top-option">
 					<div class="to-search search-switch">
-						<i class="fa fa-search"></i>
+						<i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;
+						<a href="/registration"><i class="fa fa-user"></i></a>
 					</div>
 					<div class="to-social">
-						<a href="http://www.tiktok.com/@_.grit" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+						<a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
 						<a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
 						<a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
 						<a href="https://m.facebook.com/grit.dominate"><i class="fa fa-facebook"></i></a>
@@ -153,7 +154,7 @@
 			<div class="col-lg-6">
 				<div class="section-title contact-title">
 					<span>Registration</span>
-					<h2>TRAIN WITH GRIT</h2>
+					<h2>TRAIN WITH GRIT - FILL UP THE FORM TO START YOUR FITNESS JOURNEY!</h2>
 				</div>
 				<div class="contact-widget">
 					<div class="cw-text">
@@ -177,8 +178,33 @@
 			<div class="col-lg-6">
 				<div class="leave-comment">
 					<form th:action="@{/sendEmail}" method="post">
-						<input type="text" id="firstName" name="firstName" placeholder="First Name">
-						<input type="text" id="lastName" name="lastName" placeholder="Last Name">
+						<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+						<input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+
+						<span id="email-error" style="color: red;"></span>
+						<input type="email" id="email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address" required>
+
+						<script>
+							function validateEmail() {
+								var emailInput = document.getElementById('email');
+								var emailError = document.getElementById('email-error');
+								var email = emailInput.value;
+
+								var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+								if (!emailPattern.test(email)) {
+									emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
+									emailInput.focus();
+									return false;
+								} else {
+									emailError.textContent = '';
+									return true;
+								}
+							}
+						</script>
+
+
+						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
 						<div class="row">
 							<div class="col-sm-6">
 								<input type="text" id="height" name="height" placeholder="Height / cm">
@@ -201,10 +227,9 @@
 						<input type="text" id="struggles" name="struggles" placeholder="What are your current struggles?">
 						<input type="text" id="whyStart" name="whyStart" placeholder="Why do you want to start this journey?">
 						<input type="text" id="driven" name="driven" placeholder="Do you consider yourself a driven person?">
-						<input type="email" id="email" name="email" placeholder="Email">
-						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
+
 						<textarea id="otherInfo" name="otherInfo" placeholder="Other information you want me to know"></textarea>
-						<button type="submit">Submit</button>
+						<button type="submit" onclick="validateEmail(); return false;">Submit</button>
 					</form>
 				</div>
 			</div>
@@ -249,7 +274,7 @@
 <!-- Get In Touch Section End -->
 
 <!-- Footer Section Begin -->
-<section class="footer-section" th:replace="footer">
+<section class="footer-section" th:replace="~{footer}">
 </section>
 <!-- Footer Section End -->
 
