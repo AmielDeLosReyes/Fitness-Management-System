@@ -184,25 +184,6 @@
 						<span id="email-error" style="color: red;"></span>
 						<input type="email" id="email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address" required>
 
-						<script>
-							function validateEmail() {
-								var emailInput = document.getElementById('email');
-								var emailError = document.getElementById('email-error');
-								var email = emailInput.value;
-
-								var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-								if (!emailPattern.test(email)) {
-									emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
-									emailInput.focus();
-									return false;
-								} else {
-									emailError.textContent = '';
-									return true;
-								}
-							}
-						</script>
-
 
 						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
 						<div class="row">
@@ -229,7 +210,25 @@
 						<input type="text" id="driven" name="driven" placeholder="Do you consider yourself a driven person?">
 
 						<textarea id="otherInfo" name="otherInfo" placeholder="Other information you want me to know"></textarea>
-						<button type="submit" onclick="validateEmail(); return false;">Submit</button>
+						<button type="submit" onclick="validateEmail(); return true;">Submit</button>
+						<script>
+							function validateEmail() {
+								var emailInput = document.getElementById('email');
+								var emailError = document.getElementById('email-error');
+								var email = emailInput.value;
+
+								var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+								if (!emailPattern.test(email)) {
+									emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
+									emailInput.focus();
+									return false;
+								} else {
+									emailError.textContent = '';
+									return true;
+								}
+							}
+						</script>
 					</form>
 				</div>
 			</div>
