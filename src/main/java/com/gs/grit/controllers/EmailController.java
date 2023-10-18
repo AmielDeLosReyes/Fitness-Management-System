@@ -1,5 +1,7 @@
 package com.gs.grit.controllers;
 
+import com.gs.grit.entities.Clients;
+import com.gs.grit.repositories.ClientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,6 +16,9 @@ public class EmailController {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private ClientsRepository clientsRepository;
 
     @PostMapping("/sendEmail")
     public String sendEmail(
@@ -34,6 +39,32 @@ public class EmailController {
             @RequestParam String phoneNumber,
             @RequestParam String otherInfo,
             Model model) {
+
+        // if client already exists
+        if(clientsRepository.findByEmail(email) != null){
+            // handle duplicate email
+            return "redirect:/404";
+        }
+
+        Clients clients = new Clients();
+        clients.setFirst_name(firstName);
+        clients.setLast_name(lastName);
+        clients.setEmail(email);
+        clients.setPhone_number(phoneNumber);
+        clients.setHeight(height);
+        clients.setWeight(weight);
+        clients.setAge(age);
+        clients.setSex(sex);
+        clients.setExperience_level(explainExperience);
+        clients.setFitness_routine(fitnessRoutine);
+        clients.setCurrent_diet(diet);
+        clients.setInjuries(injuries);
+        clients.setStruggles(struggles);
+        clients.setWhy_start_journey(whyStart);
+        clients.setDriven(driven);
+        clients.setOther(otherInfo);
+
+        clientsRepository.save(clients);
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
