@@ -3,6 +3,7 @@ package com.gs.grit.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "clients")
 public class Clients {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

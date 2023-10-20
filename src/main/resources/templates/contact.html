@@ -102,7 +102,7 @@
                                 <!--                                    <li><a href="/404">404</a></li>-->
                             </ul>
                         </li>
-                        <li class="active"><a href="contact">Contact</a></li>
+                        <li class="active"><a href="contact">Registration</a></li>
                     </ul>
                 </nav>
             </div>
@@ -154,7 +154,7 @@
                 <div class="col-lg-6">
                     <div class="section-title contact-title">
                         <span>Registration</span>
-                        <h2>GET IN TOUCH</h2>
+                        <h2>TRAIN WITH GRIT - FILL UP THE FORM TO START YOUR FITNESS JOURNEY!</h2>
                     </div>
                     <div class="contact-widget">
                         <div class="cw-text">
@@ -162,21 +162,29 @@
                             <p>Manila, Philippines</p>
                         </div>
                         <div class="cw-text">
-                            <i class="fa fa-mobile"></i>
-                            <ul>
-                                <li>+63 956 650 1830</li>
-<!--                                <li>125-668-886</li>-->
-                            </ul>
+                            <a href="sms:+639566501830">
+                                <i class="fa fa-mobile" style="cursor: pointer;"></i>
+                                <ul>
+                                    <li>+63 956 650 1830</li>
+                                    <!--                            <li>125-668-886</li>-->
+                                </ul>
+                            </a>
                         </div>
                         <div class="cw-text email">
-                            <i class="fa fa-envelope"></i>
+                            <i class="fa fa-envelope" onclick="sendEmail();" style="cursor: pointer;"></i>
                             <p>gritdominate@gmail.com</p>
+                            <script>
+                                function sendEmail()
+								{
+									window.location = "mailto:gritdominate@gmail.com";
+								}
+                            </script>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="leave-comment">
-                        <form th:action="@{/contactMe}" method="post">
+                        <form th:action="@{/registerNow}" method="post">
                             <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
                             <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
 
@@ -204,8 +212,8 @@
 
 
                             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
-                            <textarea placeholder="Comment"></textarea>
-                            <button type="submit" onclick="validateEmail(); return false;">Submit</button>
+                            <textarea placeholder="Comment" id="comment" name="comment"></textarea>
+                            <button type="submit" onclick="validateEmail(); return true;">Submit</button>
                         </form>
                     </div>
                 </div>

@@ -16,6 +16,11 @@ public class HomeController {
         return "404";
     }
 
+    @GetMapping("/404email")
+    public String emailDuplicate() {
+        return "404email";
+    }
+
     @GetMapping("/about-us")
     public String aboutUs() {
         return "about-us";
@@ -73,11 +78,16 @@ public class HomeController {
 
     @GetMapping("/registration")
     public String register(){
-        return "login";
+        return "contact";
     }
 
     @GetMapping("/signup")
     public String signup(){
         return "signup";
+    }
+
+    @GetMapping("/clientForm")
+    public String clientSignUp() {
+        return "clientRegistrationForm";
     }
 }

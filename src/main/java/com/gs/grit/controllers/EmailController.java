@@ -1,7 +1,9 @@
 package com.gs.grit.controllers;
 
 import com.gs.grit.entities.Clients;
+import com.gs.grit.entities.Registrations;
 import com.gs.grit.repositories.ClientsRepository;
+import com.gs.grit.repositories.RegistrationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,6 +21,54 @@ public class EmailController {
 
     @Autowired
     private ClientsRepository clientsRepository;
+
+    @Autowired
+    private RegistrationsRepository registrationsRepository;
+
+
+    @PostMapping("/registerNow")
+    public String register(
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String email,
+            @RequestParam String phoneNumber,
+            @RequestParam String comment,
+            Model model
+    ) {
+        // if registration already exists
+        if(registrationsRepository.findByEmail(email) != null){
+            // handle duplicate email
+            return "redirect:/404email";
+        }
+
+        Registrations registrations = new Registrations();
+        registrations.setFirst_name(firstName);
+        registrations.setLast_name(lastName);
+        registrations.setEmail(email);
+        registrations.setPhone_number(phoneNumber);
+        registrations.setComment(comment);
+
+        registrationsRepository.save(registrations);
+
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+
+        String subject = "Welcome to Grit Dominate, " + firstName + "! Let's Begin Your Journey To Fitness Excellence!";
+
+        String message = "This is a test email for registration of a client";
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(message);
+
+        mailSender.send(simpleMailMessage);
+
+        model.addAttribute("firstName", firstName);
+        model.addAttribute("lastName", lastName);
+        model.addAttribute("email", email);
+        model.addAttribute("phoneNumber", phoneNumber);
+        model.addAttribute("comment", comment);
+
+        return "success";
+    }
 
     @PostMapping("/sendEmail")
     public String sendEmail(
@@ -43,7 +93,7 @@ public class EmailController {
         // if client already exists
         if(clientsRepository.findByEmail(email) != null){
             // handle duplicate email
-            return "redirect:/404";
+            return "redirect:/404email";
         }
 
         Clients clients = new Clients();
