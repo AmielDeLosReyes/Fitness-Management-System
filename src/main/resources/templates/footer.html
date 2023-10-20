@@ -1,4 +1,42 @@
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Get In Touch Section Begin -->
+<div class="gettouch-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="gt-text">
+          <i class="fa fa-map-marker"></i>
+          <p>Manila, Philippines</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="gt-text">
+          <a href="sms:+639566501830">
+            <i class="fa fa-mobile" style="cursor: pointer;"></i>
+            <ul>
+              <li>+63 956 650 1830</li>
+              <!--                            <li>125-668-886</li>-->
+            </ul>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="gt-text email">
+          <i class="fa fa-envelope" onclick="sendEmail();" style="cursor: pointer;"></i>
+          <p>gritdominate@gmail.com</p>
+          <script>
+            function sendEmail()
+			{
+				window.location = "mailto:gritdominate@gmail.com";
+			}
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Get In Touch Section End -->
 <!-- Footer Section Begin -->
 <section class="footer-section">
   <div class="container">
