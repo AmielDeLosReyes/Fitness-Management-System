@@ -36,6 +36,26 @@ public class HomeController {
         return "blog-details";
     }
 
+    @GetMapping("/blog-details2")
+    public String blogDetails2() {
+        return "blog-details2";
+    }
+
+    @GetMapping("/blog-details3")
+    public String blogDetails3() {
+        return "blog-details3";
+    }
+
+    @GetMapping("/blog-details4")
+    public String blogDetails4() {
+        return "blog-details4";
+    }
+
+    @GetMapping("/blog-details5")
+    public String blogDetails5() {
+        return "blog-details5";
+    }
+
     @GetMapping("/bmi-calculator")
     public String bmiCalculator() {
         return "bmi-calculator";
