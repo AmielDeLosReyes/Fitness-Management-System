@@ -1,8 +1,10 @@
 package com.gs.grit.controllers;
 
 import com.gs.grit.entities.Clients;
+import com.gs.grit.entities.Emails;
 import com.gs.grit.entities.Registrations;
 import com.gs.grit.repositories.ClientsRepository;
+import com.gs.grit.repositories.EmailsRepo;
 import com.gs.grit.repositories.RegistrationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -25,6 +27,37 @@ public class EmailController {
     @Autowired
     private RegistrationsRepository registrationsRepository;
 
+    @Autowired
+    private EmailsRepo emailsRepo;
+
+
+    @PostMapping("/newsletterSignup")
+    public String emailSub(@RequestParam String email,
+                           Model model){
+
+        if(emailsRepo.findByEmail(email) != null){
+            // handle duplicate email
+            return "redirect:/404email";
+        }
+
+        Emails emails = new Emails();
+        emails.setEmail(email);
+
+        emailsRepo.save(emails);
+
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+
+        String subject = "Welcome to Grit Dominate Newletter! Let's Begin Your Journey To Fitness Excellence!";
+
+        String message = "This is a test email for newsletter of a client";
+        simpleMailMessage.setTo(email);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(message);
+
+        mailSender.send(simpleMailMessage);
+
+        return "success";
+    }
 
     @PostMapping("/registerNow")
     public String register(
