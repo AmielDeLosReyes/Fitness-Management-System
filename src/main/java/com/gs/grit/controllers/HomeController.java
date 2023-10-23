@@ -1,13 +1,20 @@
 package com.gs.grit.controllers;
 
 import com.gs.grit.entities.Clients;
+import com.gs.grit.entities.Users;
 import com.gs.grit.repositories.ClientsRepository;
 import com.gs.grit.repositories.EmailsRepo;
 import com.gs.grit.repositories.RegistrationsRepository;
+import com.gs.grit.repositories.UsersRepo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -19,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private RegistrationsRepository registrationsRepository;
+
+    @Autowired
+    private UsersRepo usersRepo;
 
     @Autowired
     private EmailsRepo emailsRepo;
@@ -134,24 +144,69 @@ public class HomeController {
 //    }
 
 
-    @GetMapping("/admin/dashboard")
-    public String adminDashboard(Model model){
-        List<Clients> clients = clientsRepository.findAll();
-
-        long clientCount = clientsRepository.count();
-
-        model.addAttribute("clients", clients);
-        model.addAttribute("clientCount", clientCount);
-        return "admin/dashboard";
+    @GetMapping("/login")
+    public String login(){
+        return "signup";
     }
 
-    @GetMapping("/admin/clients")
-    public String clients(){
-        return "admin/clients";
+    @PostMapping("admin/authenticate")
+    public String auth(@RequestParam String username,
+                       @RequestParam String password,
+                       Model model,
+                       HttpSession httpSession){
+        Users user = usersRepo.findByUsername(username);
+        Users users = (Users) httpSession.getAttribute("user");
+
+        // if successful
+        if (user != null && user.getPassword().equals(password)) {
+            List<Clients> clients = clientsRepository.findAll();
+
+            long clientCount = clientsRepository.count();
+
+            model.addAttribute("clients", clients);
+            model.addAttribute("clientCount", clientCount);
+            httpSession.setAttribute("user", user);
+
+
+            return "admin/dashboard";
+        } else {
+            // Handle authentication failure (e.g., show an error message)
+            return "redirect:../404";
+        }
+
+    }
+
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(Model model, HttpSession httpSession){
+        Users user = (Users) httpSession.getAttribute("user");
+        if (user != null) {
+            // User is authenticated, perform secured operations
+            List<Clients> clients = clientsRepository.findAll();
+
+            long clientCount = clientsRepository.count();
+
+            model.addAttribute("clients", clients);
+            model.addAttribute("clientCount", clientCount);
+            return "admin/dashboard";
+        }else {
+            return "redirect:../signup";
+        }
     }
 
     @GetMapping("/admin/blank")
-    public String blank(){
-        return "admin/blank";
+    public String blank(HttpSession httpSession){
+        Users user = (Users) httpSession.getAttribute("user");
+        if (user != null) {
+            return "admin/blank";
+        }else {
+            return "redirect:../404";
+        }
+    }
+
+    @GetMapping("/admin/logout")
+    public String logout(HttpSession httpSession) {
+        // Invalidate the user's session
+        httpSession.invalidate();
+        return "redirect:../login"; // Redirect to the login page after logout
     }
 }
