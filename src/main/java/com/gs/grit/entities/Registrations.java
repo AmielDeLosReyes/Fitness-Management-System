@@ -2,6 +2,8 @@ package com.gs.grit.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "registrations")
 public class Registrations {
@@ -19,6 +21,17 @@ public class Registrations {
     private String phone_number;
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "registration_date")
+    private String registration_date;
+
+    public String getRegistration_date() {
+        return registration_date;
+    }
+
+    public void setRegistration_date(String registration_date) {
+        this.registration_date = registration_date;
+    }
 
     public Integer getRegistration_id() {
         return registration_id;

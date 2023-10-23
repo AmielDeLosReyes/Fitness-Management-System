@@ -1,10 +1,27 @@
 package com.gs.grit.controllers;
 
+import com.gs.grit.entities.Clients;
+import com.gs.grit.repositories.ClientsRepository;
+import com.gs.grit.repositories.EmailsRepo;
+import com.gs.grit.repositories.RegistrationsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private ClientsRepository clientsRepository;
+
+    @Autowired
+    private RegistrationsRepository registrationsRepository;
+
+    @Autowired
+    private EmailsRepo emailsRepo;
 
     @GetMapping("/")
     public String home() {
@@ -109,5 +126,32 @@ public class HomeController {
     @GetMapping("/clientForm")
     public String clientSignUp() {
         return "clientRegistrationForm";
+    }
+
+//    @GetMapping("/admin/profile")
+//    public String adminPage() {
+//        return "admin/profile";
+//    }
+
+
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(Model model){
+        List<Clients> clients = clientsRepository.findAll();
+
+        long clientCount = clientsRepository.count();
+
+        model.addAttribute("clients", clients);
+        model.addAttribute("clientCount", clientCount);
+        return "admin/dashboard";
+    }
+
+    @GetMapping("/admin/clients")
+    public String clients(){
+        return "admin/clients";
+    }
+
+    @GetMapping("/admin/blank")
+    public String blank(){
+        return "admin/blank";
     }
 }

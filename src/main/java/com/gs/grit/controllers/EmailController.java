@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 @Controller
 public class EmailController {
 
@@ -81,6 +85,13 @@ public class EmailController {
         registrations.setPhone_number(phoneNumber);
         registrations.setComment(comment);
 
+        Date d1 = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        String formattedDate = dateFormat.format(d1);
+
+        registrations.setRegistration_date(formattedDate);
+
         registrationsRepository.save(registrations);
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
@@ -146,6 +157,15 @@ public class EmailController {
         clients.setWhy_start_journey(whyStart);
         clients.setDriven(driven);
         clients.setOther(otherInfo);
+
+        Date d1 = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        String formattedDate = dateFormat.format(d1);
+
+        clients.setRegistration_date(formattedDate);
+
+        clients.setRegistration_date(formattedDate);
 
         clientsRepository.save(clients);
 
