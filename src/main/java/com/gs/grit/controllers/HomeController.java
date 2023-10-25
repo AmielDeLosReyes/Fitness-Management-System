@@ -143,6 +143,10 @@ public class HomeController {
 //        return "admin/profile";
 //    }
 
+    @GetMapping("/email")
+    public String emailPage() {
+        return "email";
+    }
 
     @GetMapping("/login")
     public String login(){
