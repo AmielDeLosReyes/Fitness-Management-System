@@ -3,23 +3,23 @@ package com.gs.grit.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "admin")
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private Integer admin_id;
 
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getadmin_id() {
+        return admin_id;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setadmin_id(Integer admin_id) {
+        this.admin_id = admin_id;
     }
 
     public String getUsername() {
@@ -38,7 +38,7 @@ public class Users {
         this.password = password;
     }
 
-    public Users() {
+    public Admin() {
 
     }
 }

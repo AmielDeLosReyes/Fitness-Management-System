@@ -194,7 +194,7 @@
                                             style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                     </div>
                                 </li>
-                                <li class="ms-auto"><span class="counter text-success" th:text="${clientCount}"></span></li>
+                                <li class="ms-auto"><span class="counter text-success" th:text="${userCount}"></span></li>
                             </ul>
                         </div>
                     </div>
@@ -281,11 +281,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="client, rowStat : ${clients}">
+                                        <tr th:each="user, rowStat : ${users}">
                                             <td th:text="${rowStat.count}"></td>
-                                            <td class="txt-oflo" th:text="${client.first_name} + ' ' + ${client.last_name}"></td>
-                                            <td th:text="${client.email}"></td>
-                                            <td class="txt-oflo" th:text="${client.registration_date}"></td>
+                                            <td class="txt-oflo" th:text="${user.first_name} + ' ' + ${user.last_name}"></td>
+                                            <td th:text="${user.email}"></td>
+                                            <td class="txt-oflo" th:text="${user.registration_date}"></td>
 <!--                                            <td><span class="text-success">$24</span></td>-->
                                         </tr>
                                     </tbody>

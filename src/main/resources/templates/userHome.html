@@ -7,7 +7,7 @@
 	<meta name="keywords" content="Gym, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Registration - Grit Dominate</title>
+	<title>Timetable - Grit Dominate</title>
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -91,7 +91,7 @@
 						<!--                            <li><a href="/class-details">Programs</a></li>-->
 						<li><a href="/services">Services</a></li>
 						<li><a href="/team">Shop</a></li>
-						<li><a href="#">Pages</a>
+						<li class="active"><a href="#">Pages</a>
 							<ul class="dropdown">
 								<!--                                    <li><a href="/about-us">About us</a></li>-->
 								<li><a href="/class-timetable">Programs timetable</a></li>
@@ -102,7 +102,7 @@
 								<!--                                    <li><a href="/404">404</a></li>-->
 							</ul>
 						</li>
-						<li class="active"><a href="#">Registration</a></li>
+						<li><a href="userRegistration">Registration</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -129,16 +129,16 @@
 <!-- Header End -->
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/banner-bg.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="breadcrumb-text">
-					<h2>Train With Grit</h2>
+					<h2 th:text="${welcomeMessage}"></h2>
 					<div class="bt-option">
 						<a href="/">Home</a>
 						<a href="#">Pages</a>
-						<span>Registration</span>
+						<span th:text="${firstName}"></span>
 					</div>
 				</div>
 			</div>
@@ -147,100 +147,165 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-<!-- Contact Section Begin -->
-<section class="contact-section spad">
+<!-- Class Timetable Section Begin -->
+<section class="class-timetable-section spad">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
-				<div class="section-title contact-title">
-					<span>Registration</span>
-					<h2>TRAIN WITH GRIT - FILL UP THE FORM TO START YOUR FITNESS JOURNEY!</h2>
-				</div>
-				<div class="contact-widget">
-					<div class="cw-text">
-						<i class="fa fa-map-marker"></i>
-						<p>Manila, Philippines<br/></p>
-					</div>
-					<div class="cw-text">
-						<i class="fa fa-mobile"></i>
-						<ul>
-							<li>+63 956 650 1830</li>
-<!--							<li>125-668-886</li>-->
-						</ul>
-					</div>
-					<div class="cw-text email">
-						<i class="fa fa-envelope"></i>
-						<p>gritdominate@gmail.com</p>
-					</div>
+				<div class="section-title">
+					<span th:text="${m}"></span>
+					<h2>Your Programs</h2>
 				</div>
 			</div>
-
 			<div class="col-lg-6">
-				<div class="leave-comment">
-					<form th:action="@{/sendEmail}" method="post">
-						<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-						<input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-
-						<span id="email-error" style="color: red;"></span>
-						<input type="email" id="email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address" required>
-
-
-						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
-						<div class="row">
-							<div class="col-sm-6">
-								<input type="text" id="height" name="height" placeholder="Height / cm">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" id="weight" name="weight" placeholder="Weight / kg">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" id="age" name="age" placeholder="Age">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" id="sex" name="sex" placeholder="Sex">
-							</div>
-						</div>
-						<input type="text" id="explainExperience" name="explainExperience" placeholder="Explain to me your experience level">
-
-						<input type="text" id="fitnessRoutine" name="fitnessRoutine" placeholder="What is your current fitness routine?">
-						<input type="text" id="diet" name="diet" placeholder="What does your current diet look like?">
-						<input type="text" id="injuries" name="injuries"placeholder="Any previous/present injuries? Briefly state">
-						<input type="text" id="struggles" name="struggles" placeholder="What are your current struggles?">
-						<input type="text" id="whyStart" name="whyStart" placeholder="Why do you want to start this journey?">
-						<input type="text" id="driven" name="driven" placeholder="Do you consider yourself a driven person?">
-
-						<textarea id="otherInfo" name="otherInfo" placeholder="Other information you want me to know"></textarea>
-						<button type="submit" onclick="validateEmail(); return true;">Submit</button>
-						<script>
-							function validateEmail() {
-								var emailInput = document.getElementById('email');
-								var emailError = document.getElementById('email-error');
-								var email = emailInput.value;
-
-								var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-								if (!emailPattern.test(email)) {
-									emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
-									emailInput.focus();
-									return false;
-								} else {
-									emailError.textContent = '';
-									return true;
-								}
-							}
-						</script>
-					</form>
+				<div class="table-controls">
+					<ul>
+						<li class="active" data-tsfilter="all"><a href="userLogout">Logout</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
-<!--		<div class="map">-->
-<!--			<iframe-->
-<!--					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12087.069761554938!2d-74.2175599360452!3d40.767139456514954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c254b5958982c3%3A0xb6ab3931055a2612!2sEast%20Orange%2C%20NJ%2C%20USA!5e0!3m2!1sen!2sbd!4v1581710470843!5m2!1sen!2sbd"-->
-<!--					height="550" style="border:0;" allowfullscreen=""></iframe>-->
-<!--		</div>-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="class-timetable">
+					<table>
+						<thead>
+						<tr>
+							<th></th>
+							<th>Program</th>
+							<th>Status</th>
+<!--							<th>Wednesday</th>-->
+<!--							<th>Thursday</th>-->
+<!--							<th>Friday</th>-->
+<!--							<th>Saturday</th>-->
+<!--							<th>Sunday</th>-->
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="class-time" style="width:500px">1</td>
+							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
+								<h5>WEIGHT LOSS</h5>
+								<span>Amiel De Los Reyes</span>
+							</td>
+							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
+								<h5>PENDING</h5>
+<!--								<span>Amiel De Los Reyes</span>-->
+							</td>
+
+						</tr>
+
+						<tr>
+							<td class="class-time" style="width:500px">2</td>
+							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
+								<h5>WEIGHT LOSS</h5>
+								<span>Amiel De Los Reyes</span>
+							</td>
+							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
+								<h5>PENDING</h5>
+								<!--								<span>Amiel De Los Reyes</span>-->
+							</td>
+
+						</tr>
+
+						<tr>
+							<td class="class-time" style="width:500px">3</td>
+							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
+								<h5>WEIGHT LOSS</h5>
+								<span>Amiel De Los Reyes</span>
+							</td>
+							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
+								<h5>PENDING</h5>
+								<!--								<span>Amiel De Los Reyes</span>-->
+							</td>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
-<!-- Contact Section End -->
+<!-- Class Timetable Section End -->
+<!-- Pricing Section Begin -->
+<section class="pricing-section spad" id="destination" style="padding-top: 60px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-title">
+					<span>Our Plan</span>
+					<h2>Choose your pricing plan</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-lg-4 col-md-8">
+				<div class="ps-item">
+					<h3>Ready-To-Go Program</h3>
+					<div class="pi-price">
+						<h2><s>&#8369;1500</s> &#8369;499.99 </h2>
+						<span>MONTHLY PROGRAM (4-16 Weeks)</span>
+					</div>
+					<ul>
+						<li><b>Package:</b> A 4-week monthly workout plan with monthly nutrition plan and unlimited consultation</li>
+						<li><b>Start Right Away:</b> You can begin exercising right now with a plan ready for you.</li>
+						<li><b>Easy to Follow:</b> The exercises are not hard to do, and you don't need to think too much.</li>
+						<li><b>Easy Instructions:</b> They tell you how to do each exercise in a simple way.</li>
+						<li><b>No Need to Plan:</b> You don't have to figure out what to do; it's all set.</li>
+						<li><b>You Decide:</b> You can choose how often you want to do the exercises.</li>
+						<li><b>Personalized:</b> Provides you a workout-specific based on your goals.</li>
+					</ul>
+					<a href="/registration" class="primary-btn pricing-btn">Enroll now</a>
+					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-8">
+				<div class="ps-item">
+					<h3>3-Month Ready-to-Go Jumpstart</h3>
+					<div class="pi-price">
+						<h2><s>&#8369;3500</s> &#8369;1,249.99 </h2>
+						<span>SINGLE PROGRAM WITH CONSULTATION</span>
+					</div>
+					<ul>
+						<li><b>Package:</b> A 3-month workout plan with monthly nutrition plan and unlimited consultation.</li>
+						<li><b>Instant Workout Plan:</b> Start exercising right away with a plan ready for you.</li>
+						<li><b>Personal Consultation:</b> Get one-on-one guidance to help you succeed.</li>
+						<li><b>Different Kinds of Exercise:</b> You'll do different exercises to keep it interesting.</li>
+						<li><b>No Need to Plan:</b> You don't have to figure out what to do; it's all set.</li>
+						<li><b>See Progress:</b> You'll notice you're getting better and stronger.</li>
+
+					</ul>
+					<a href="/registration" class="primary-btn pricing-btn">Enroll now</a>
+					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-8">
+				<div class="ps-item">
+					<h3>1-on-1 In-Person Fit Journey Program</h3>
+					<div class="pi-price">
+						<h2><s>&#8369;18,000</s> &#8369;14,999.99</h2>
+						<span>&#8369;500 PER 1-HOUR SESSION</span>
+					</div>
+					<ul>
+						<li><b>Package:</b> A monthly workout plan with monthly nutrition plan, as well as in-person session.</li>
+						<li><b>Bundle:</b> &#8369;14,999.99 for 30 1-hour in-person sessions</li>
+						<li><b>Bundle:</b> &#8369;7,499.99 for 15 1-hour in-person sessions</li>
+						<li><b>Custom Workout Plan:</b> Receive a workout plan designed just for you.</li>
+						<li><b>Dietary Tips:</b> Basic nutrition advice to support your fitness goals.</li>
+						<li><b>Flexible Scheduling:</b> Arrange sessions to fit your availability. Meet me at least once a week.</li>
+						<li><b>Continuous Support:</b> Ongoing assistance as you progress on your journey.</li>
+
+					</ul>
+					<a href="/registration" class="primary-btn pricing-btn">Enroll now</a>
+					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Pricing Section End -->
+
 
 <!-- Footer Section Begin -->
 <section class="footer-section" th:replace="~{footer}">

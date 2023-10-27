@@ -1,15 +1,13 @@
 package com.gs.grit.controllers;
 
+import com.gs.grit.entities.Admin;
 import com.gs.grit.entities.Clients;
-import com.gs.grit.entities.Users;
-import com.gs.grit.repositories.ClientsRepository;
-import com.gs.grit.repositories.EmailsRepo;
-import com.gs.grit.repositories.RegistrationsRepository;
-import com.gs.grit.repositories.UsersRepo;
+import com.gs.grit.entities.Admin;
+import com.gs.grit.entities.User;
+import com.gs.grit.repositories.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +26,13 @@ public class HomeController {
     private RegistrationsRepository registrationsRepository;
 
     @Autowired
-    private UsersRepo usersRepo;
+    private AdminRepo adminRepo;
 
     @Autowired
     private EmailsRepo emailsRepo;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @GetMapping("/")
     public String home() {
@@ -98,9 +99,9 @@ public class HomeController {
         return "class-timetable";
     }
 
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
+    @GetMapping("/userRegistration")
+    public String userRegistration() {
+        return "userRegistration";
     }
 
     @GetMapping("/gallery")
@@ -118,6 +119,7 @@ public class HomeController {
         return "services";
     }
 
+
     @GetMapping("/team")
     public String team() {
         return "team";
@@ -128,9 +130,9 @@ public class HomeController {
         return "contact";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/adminLogin")
     public String signup(){
-        return "signup";
+        return "adminLogin";
     }
 
     @GetMapping("/clientForm")
@@ -143,64 +145,137 @@ public class HomeController {
 //        return "admin/profile";
 //    }
 
+    @GetMapping("/userHome")
+    public String userHome(HttpSession httpSession, Model model) {
+        User us = (User) httpSession.getAttribute("u");
+
+        if (us != null) {
+            String welcomeMessage = "Welcome to your homepage, " + us.getFirst_name() + "!";
+            String firstName = us.getFirst_name();
+
+            String m = firstName + "'s Programs";
+
+
+            model.addAttribute("welcomeMessage", welcomeMessage);
+            model.addAttribute("m", m);
+            model.addAttribute("firstName", firstName);
+            return "userHome";
+        }
+
+        return "userLogin";
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     @GetMapping("/email")
     public String emailPage() {
         return "email";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "signup";
+    @GetMapping("/userLogin")
+    public String userLogin(HttpSession httpSession, Model model){
+        User user = (User) httpSession.getAttribute("user");
+
+        if(user != null) {
+            String welcomeMessage = "Welcome to your homepage, " + user.getFirst_name() + "!";
+            String firstName = user.getFirst_name();
+
+            String m = firstName + "'s Programs";
+
+
+            model.addAttribute("welcomeMessage", welcomeMessage);
+            model.addAttribute("m", m);
+            model.addAttribute("firstName", firstName);
+            return "userHome";
+        }
+
+        return "userLogin";
     }
 
-    @PostMapping("admin/authenticate")
+    @PostMapping("/admin/authenticate")
     public String auth(@RequestParam String username,
                        @RequestParam String password,
                        Model model,
-                       HttpSession httpSession){
-        Users user = usersRepo.findByUsername(username);
-        Users users = (Users) httpSession.getAttribute("user");
+                       HttpSession httpSession) {
+        // Retrieve the admin user from the repository based on the provided username
+        Admin admin = adminRepo.findByUsername(username);
 
-        // if successful
-        if (user != null && user.getPassword().equals(password)) {
-            List<Clients> clients = clientsRepository.findAll();
+        if (admin != null && admin.getPassword().equals(password)) {
+            // Authentication is successful
+            // You can load additional data and set it in the model if needed
+            List<User> users = userRepo.findAll();
+            long userCount = userRepo.count();
 
-            long clientCount = clientsRepository.count();
+            model.addAttribute("users", users);
+            model.addAttribute("userCount", userCount);
 
-            model.addAttribute("clients", clients);
-            model.addAttribute("clientCount", clientCount);
-            httpSession.setAttribute("user", user);
-
+            // Store the authenticated admin in the session
+            httpSession.setAttribute("admin", admin);
 
             return "admin/dashboard";
         } else {
-            // Handle authentication failure (e.g., show an error message)
-            return "redirect:../404";
+            // Authentication failed, show an error message or redirect to the login page
+            model.addAttribute("error", "Invalid username or password"); // Add an error message to display in the view
+            return "adminLogin"; // Redirect to the login page
         }
-
     }
+
+
+    @PostMapping("authenticate")
+    public String userAuth(@RequestParam String email,
+                           @RequestParam String password,
+                           Model model,
+                           HttpSession httpSession) {
+        // You should retrieve the user from the repository based on the provided email
+        User user = userRepo.findByEmail(email);
+
+        if (user != null && user.getPassword().equals(password)) {
+            // Authentication is successful, store the user in the session
+            String welcomeMessage = "Welcome to your homepage, " + user.getFirst_name() + "!";
+            String firstName = user.getFirst_name();
+
+            String m = firstName + "'s Programs";
+
+            model.addAttribute("welcomeMessage", welcomeMessage);
+            model.addAttribute("m", m);
+            model.addAttribute("firstName", firstName);
+            httpSession.setAttribute("user", user);
+
+            return "userHome";
+        } else {
+            // Authentication failed, return to the login page
+            return "userLogin";
+        }
+    }
+
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard(Model model, HttpSession httpSession){
-        Users user = (Users) httpSession.getAttribute("user");
-        if (user != null) {
-            // User is authenticated, perform secured operations
-            List<Clients> clients = clientsRepository.findAll();
+        Admin admin = (Admin) httpSession.getAttribute("admin");
+        if (admin != null) {
+            // You can load additional data and set it in the model if needed
+            List<User> users = userRepo.findAll();
+            long userCount = userRepo.count();
 
-            long clientCount = clientsRepository.count();
+            model.addAttribute("users", users);
+            model.addAttribute("userCount", userCount);
 
-            model.addAttribute("clients", clients);
-            model.addAttribute("clientCount", clientCount);
+            // Store the authenticated admin in the session
+            httpSession.setAttribute("admin", admin);
+
             return "admin/dashboard";
-        }else {
+        } else {
             return "redirect:../signup";
         }
     }
 
     @GetMapping("/admin/blank")
     public String blank(HttpSession httpSession){
-        Users user = (Users) httpSession.getAttribute("user");
-        if (user != null) {
+        Admin admin = (Admin) httpSession.getAttribute("admin");
+        if (admin != null) {
             return "admin/blank";
         }else {
             return "redirect:../404";
@@ -211,6 +286,16 @@ public class HomeController {
     public String logout(HttpSession httpSession) {
         // Invalidate the user's session
         httpSession.invalidate();
-        return "redirect:../login"; // Redirect to the login page after logout
+        return "redirect:../"; // Redirect to the login page after logout
     }
+
+    @GetMapping("userLogout")
+    public String userLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "userLogin"; // Redirect to the login page
+    }
+
 }
