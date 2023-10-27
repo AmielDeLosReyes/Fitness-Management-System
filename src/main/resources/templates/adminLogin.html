@@ -32,6 +32,7 @@
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100">
+      <p id="email-error" style="color: red;" th:text="${error}"></p>
       <form class="login100-form validate-form" th:action="@{admin/authenticate}" method="post">
 	      <span class="login100-form-title p-b-26">
 		      Welcome ADMIN

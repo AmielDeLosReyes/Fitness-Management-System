@@ -219,7 +219,7 @@ public class HomeController {
         } else {
             // Authentication failed, show an error message or redirect to the login page
             model.addAttribute("error", "Invalid username or password"); // Add an error message to display in the view
-            return "adminLogin"; // Redirect to the login page
+            return "redirect:/adminLogin"; // Redirect to the login page
         }
     }
 
