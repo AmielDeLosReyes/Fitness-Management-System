@@ -58,7 +58,7 @@
 					<!--                        <li><a href="/404">404</a></li>-->
 				</ul>
 			</li>
-			<li><a href="/useruserRegistration">Registration</a></li>
+			<li><a href="/userRegistration">Registration</a></li>
 		</ul>
 	</nav>
 	<div id="mobile-menu-wrap"></div>
@@ -102,7 +102,7 @@
 								<!--                                    <li><a href="/404">404</a></li>-->
 							</ul>
 						</li>
-						<li><a href="useruserRegistration">Registration</a></li>
+						<li><a href="userRegistration">Registration</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -171,7 +171,7 @@
 					<table>
 						<thead>
 						<tr>
-							<th></th>
+							<th>Row</th>
 							<th>Program</th>
 							<th>Status</th>
 <!--							<th>Wednesday</th>-->
@@ -182,41 +182,15 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<td class="class-time" style="width:500px">1</td>
+						<tr th:each="program, rowStat : ${userPrograms}">
+							<td class="class-time" style="width:500px" th:text="${rowStat.count}"></td>
 							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
-								<h5>WEIGHT LOSS</h5>
+								<h5 th:text="${program.programName}"></h5>
 								<span>Amiel De Los Reyes</span>
 							</td>
 							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
 								<h5>PENDING</h5>
 <!--								<span>Amiel De Los Reyes</span>-->
-							</td>
-
-						</tr>
-
-						<tr>
-							<td class="class-time" style="width:500px">2</td>
-							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
-								<h5>WEIGHT LOSS</h5>
-								<span>Amiel De Los Reyes</span>
-							</td>
-							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
-								<h5>PENDING</h5>
-								<!--								<span>Amiel De Los Reyes</span>-->
-							</td>
-
-						</tr>
-
-						<tr>
-							<td class="class-time" style="width:500px">3</td>
-							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
-								<h5>WEIGHT LOSS</h5>
-								<span>Amiel De Los Reyes</span>
-							</td>
-							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
-								<h5>PENDING</h5>
-								<!--								<span>Amiel De Los Reyes</span>-->
 							</td>
 
 						</tr>

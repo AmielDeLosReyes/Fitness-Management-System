@@ -1,9 +1,7 @@
 package com.gs.grit.controllers;
 
+import com.gs.grit.entities.*;
 import com.gs.grit.entities.Admin;
-import com.gs.grit.entities.Clients;
-import com.gs.grit.entities.Admin;
-import com.gs.grit.entities.User;
 import com.gs.grit.repositories.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,6 +32,12 @@ public class HomeController {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private UserProgramsRepo userProgramsRepo;
+
+    @Autowired
+    private ProgramsRepo programsRepo;
 
     @GetMapping("/")
     public String home() {
@@ -152,13 +157,32 @@ public class HomeController {
         if (us != null) {
             String welcomeMessage = "Welcome to your homepage, " + us.getFirst_name() + "!";
             String firstName = us.getFirst_name();
+            String lastName = us.getLast_name();
 
             String m = firstName + "'s Programs";
+            int userId = us.getUser_id();
+
+            // Retrieve the user's program data
+            List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
+
+            // Create a list to hold the program data
+            List<ProgramData> userPrograms = new ArrayList<>();
+
+            // Iterate through the program data and create ProgramData objects
+            for (Object[] programData : userProgramData) {
+                Integer programId = (Integer) programData[0];
+                String programName = (String) programData[1];
+                ProgramData program = new ProgramData(programId, programName);
+                userPrograms.add(program);
+            }
 
 
             model.addAttribute("welcomeMessage", welcomeMessage);
             model.addAttribute("m", m);
             model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("userPrograms", userPrograms);
+            model.addAttribute("userId", userId);
             return "userHome";
         }
 
@@ -182,13 +206,33 @@ public class HomeController {
         if(user != null) {
             String welcomeMessage = "Welcome to your homepage, " + user.getFirst_name() + "!";
             String firstName = user.getFirst_name();
+            String lastName = user.getLast_name();
 
             String m = firstName + "'s Programs";
+            int userId = user.getUser_id();
+
+            // Retrieve the user's program data
+            List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
+
+            // Create a list to hold the program data
+            List<ProgramData> userPrograms = new ArrayList<>();
+
+            // Iterate through the program data and create ProgramData objects
+            for (Object[] programData : userProgramData) {
+                Integer programId = (Integer) programData[0];
+                String programName = (String) programData[1];
+                ProgramData program = new ProgramData(programId, programName);
+                userPrograms.add(program);
+            }
 
 
             model.addAttribute("welcomeMessage", welcomeMessage);
             model.addAttribute("m", m);
             model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("userPrograms", userPrograms);
+            model.addAttribute("userId", userId);
+
             return "userHome";
         }
 
@@ -229,20 +273,38 @@ public class HomeController {
                            @RequestParam String password,
                            Model model,
                            HttpSession httpSession) {
-        // You should retrieve the user from the repository based on the provided email
+        // Retrieve the user from the repository based on the provided email
         User user = userRepo.findByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
             // Authentication is successful, store the user in the session
+            httpSession.setAttribute("user", user);
+
+            // Get the user's ID
+            int userId = user.getUser_id();
+
+            // Retrieve the user's program data
+            List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
+
+            // Create a list to hold the program data
+            List<ProgramData> userPrograms = new ArrayList<>();
+
+            // Iterate through the program data and create ProgramData objects
+            for (Object[] programData : userProgramData) {
+                Integer programId = (Integer) programData[0];
+                String programName = (String) programData[1];
+                ProgramData program = new ProgramData(programId, programName);
+                userPrograms.add(program);
+            }
+
+            String m = user.getFirst_name() + "'s Programs";
+            // Add user-related attributes to the model
             String welcomeMessage = "Welcome to your homepage, " + user.getFirst_name() + "!";
             String firstName = user.getFirst_name();
-
-            String m = firstName + "'s Programs";
-
             model.addAttribute("welcomeMessage", welcomeMessage);
-            model.addAttribute("m", m);
             model.addAttribute("firstName", firstName);
-            httpSession.setAttribute("user", user);
+            model.addAttribute("userPrograms", userPrograms);
+            model.addAttribute("m", m);
 
             return "userHome";
         } else {
@@ -250,6 +312,7 @@ public class HomeController {
             return "userLogin";
         }
     }
+
 
 
     @GetMapping("/admin/dashboard")
