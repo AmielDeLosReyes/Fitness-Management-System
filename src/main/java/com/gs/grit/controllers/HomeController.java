@@ -221,8 +221,8 @@ public class HomeController {
                 Integer programId = (Integer) programData[0];
                 String programName = (String) programData[1];
                 String status = (programData.length > 2) ? (String) programData[2] : "PENDING"; // Set status to "pending" by default if not present
-                ProgramData program = new ProgramData(programId, programName, "PENDING");
-
+                System.out.println("Program ID: " + programId + ", Status: " + status);
+                ProgramData program = new ProgramData(programId, programName, status);
                 userPrograms.add(program);
             }
 
@@ -295,7 +295,8 @@ public class HomeController {
                 Integer programId = (Integer) programData[0];
                 String programName = (String) programData[1];
                 String status = (programData.length > 2) ? (String) programData[2] : "PENDING"; // Set status to "pending" by default if not present
-                ProgramData program = new ProgramData(programId, programName, "PENDING");
+                System.out.println("Program ID: " + programId + ", Status: " + status);
+                ProgramData program = new ProgramData(programId, programName, status);
                 userPrograms.add(program);
             }
 

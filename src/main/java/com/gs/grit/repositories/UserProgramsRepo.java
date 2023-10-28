@@ -14,7 +14,7 @@ public interface UserProgramsRepo extends JpaRepository<UserPrograms, Integer> {
     @Query(value = "SELECT * FROM userPrograms WHERE user_id = :userId", nativeQuery = true)
     List<UserPrograms> findByUserId(@Param("userId") int userId);
 
-    @Query(value = "SELECT up.program_id, p.program_name " +
+    @Query(value = "SELECT up.program_id, p.program_name, up.status " +
             "FROM userPrograms up " +
             "INNER JOIN programs p ON up.program_id = p.program_id " +
             "WHERE up.user_id = :userId", nativeQuery = true)
