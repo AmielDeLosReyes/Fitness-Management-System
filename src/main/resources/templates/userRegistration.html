@@ -23,6 +23,25 @@
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .alert.alert-success {
+			color: #155724;
+			background-color: #d4edda;
+			border-color: #c3e6cb;
+			padding: 15px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		.alert.alert-success strong {
+			font-weight: bold;
+		}
+
+    </style>
 </head>
 
 <body>
@@ -215,23 +234,30 @@
                             <input type="password" id="password" name="password" placeholder="Password (at least 8 characters)" required>
                             <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password">
                             <button type="submit" onclick="validateEmail(); return true;">Submit</button>
+                            </br>
+                            <div class="alert alert-success" id="enrollmentSuccessAlert1" style="display: none;">
+                                <strong>Success!</strong> Your account has been created successfully. Please wait while we redirect you. You will also receive an email confirmation shortly. Thank you for joining us!
+                            </div>
                             <script>
                                 document.getElementById('registration-form').addEventListener('submit', function (event) {
-                                    const password = document.getElementById('password').value;
-                                    const confirmPassword = document.getElementById('cpassword').value;
+									const password = document.getElementById('password').value;
+									const confirmPassword = document.getElementById('cpassword').value;
 
-                                    if (password.length < 8) {
-                                        alert("Password must be 8 characters or more!");
-                                        event.preventDefault(); // Prevent form submission
-                                    }
+									if (password.length < 8) {
+										alert("Password must be 8 characters or more!");
+										event.preventDefault(); // Prevent form submission
+									}
 
-                                    if (password !== confirmPassword) {
-                                        alert("Password and confirm password do not match.");
-                                        event.preventDefault(); // Prevent form submission
-                                    }
-
-                                });
+									if (password !== confirmPassword) {
+										alert("Password and confirm password do not match.");
+										event.preventDefault(); // Prevent form submission
+									} else {
+										// If the form is valid, you can display a success alert.
+										document.getElementById('enrollmentSuccessAlert1').style.display = 'block';
+									}
+								});
                             </script>
+
                         </form>
                     </div>
                 </div>

@@ -185,7 +185,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<section class="choseus-section spad" th:if="${#lists.isEmpty(userPrograms)}">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title" style="text-align: center;">
+							<span>You don't have any programs yet.</span>
+							<h2>Enroll to one of the programs below to get started!</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="row" th:if="${not #lists.isEmpty(userPrograms)}">
 			<div class="col-lg-12">
 				<div class="class-timetable">
 					<table>
@@ -212,7 +224,6 @@
 								<h5 th:text="${program.status}"></h5>
 <!--								<pre th:text="${userPrograms}"></pre> &lt;!&ndash; Add it here to debug data &ndash;&gt;-->
 							</td>
-
 						</tr>
 						</tbody>
 					</table>
@@ -221,6 +232,7 @@
 		</div>
 	</div>
 </section>
+
 <!-- Class Timetable Section End -->
 <!-- Pricing Section Begin -->
 <section class="pricing-section spad" id="destination" style="padding-top: 60px;">

@@ -58,7 +58,7 @@
                     <!--                        <li><a href="/404">404</a></li>-->
                 </ul>
             </li>
-            <li><a href="/userRegistration">Registration</a></li>
+            <li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -102,7 +102,7 @@
                                 <!--                                    <li><a href="/404">404</a></li>-->
                             </ul>
                         </li>
-                        <li><a href="userRegistration">Registration</a></li>
+                        <li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
                     </ul>
                 </nav>
             </div>
@@ -262,7 +262,7 @@
                             <span>Our Team</span>
                             <h2>TRAIN WITH GRIT DOMINATE</h2>
                         </div>
-                        <a href="/userRegistration" class="primary-btn btn-normal appoinment-btn">Register Now</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn btn-normal appoinment-btn">Register Now</a>
                     </div>
                 </div>
             </div>
@@ -330,7 +330,7 @@
                     <div class="bs-text">
                         <h2>Seize the Opportunity: Register Now for Exclusive Deals!</h2>
                         <div class="bt-tips">Where Grit and Muscle Forge the Ultimate You.</div>
-                        <a href="/userRegistration" class="primary-btn  btn-normal">Appointment</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn  btn-normal">Appointment</a>
                     </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@
             <i class="fa fa-close"></i>
         </div>
         <div class="canvas-search search-switch">
-            
+
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
@@ -58,7 +58,7 @@
 <!--                        <li><a href="/404">404</a></li>-->
                     </ul>
                 </li>
-                <li><a href="/userRegistration">Registration</a></li>
+                <li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -102,7 +102,7 @@
 <!--                                    <li><a href="/404">404</a></li>-->
                                 </ul>
                             </li>
-                            <li><a href="userRegistration">Registration</a></li>
+                            <li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -138,7 +138,7 @@
                             <div class="hi-text">
                                 <span>Embrace the Challenge, Transform Your Physique.</span>
                                 <h1>Resilience, fueled by  <strong>grit</strong></h1>
-                                <a href="/userRegistration" class="primary-btn">Register Now</a>
+                                <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn">Register Now</a>
                             </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                             <div class="hi-text">
                                 <span>Shape your body</span>
                                 <h1>Unleash your <strong>grit</strong>, Elevate Your Fitness</h1>
-                                <a href="/userRegistration" class="primary-btn">Sign-Up/Login</a>
+                                <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn">Sign-Up/Login</a>
                             </div>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                     <div class="bs-text">
                         <h2>Seize the Opportunity: Register Now for Exclusive Deals!</h2>
                         <div class="bt-tips">Where Grit and Muscle Forge the Ultimate You.</div>
-                        <a href="/userRegistration" class="primary-btn  btn-normal">Appointment</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn btn-normal">Appointment</a>
                     </div>
                 </div>
             </div>
@@ -327,7 +327,7 @@
                             <li><b>You Decide:</b> You can choose how often you want to do the exercises.</li>
                             <li><b>Personalized:</b> Provides you a workout-specific based on your goals.</li>
                         </ul>
-                        <a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn pricing-btn">Enroll now</a>
 <!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
                     </div>
                 </div>
@@ -347,7 +347,7 @@
                             <li><b>See Progress:</b> You'll notice you're getting better and stronger.</li>
 
                         </ul>
-                        <a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn pricing-btn">Enroll now</a>
 <!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
                     </div>
                 </div>
@@ -369,7 +369,7 @@
                             <li><b>Continuous Support:</b> Ongoing assistance as you progress on your journey.</li>
 
                         </ul>
-                        <a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+                        <a th:href="${user == null ? '/userRegistration' : '/userLogin'}" class="primary-btn pricing-btn">Enroll now</a>
 <!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
                     </div>
                 </div>

@@ -40,7 +40,11 @@ public class HomeController {
     private ProgramsRepo programsRepo;
 
     @GetMapping("/")
-    public String home() {
+    public String home(HttpSession httpSession, Model model) {
+        User user = (User) httpSession.getAttribute("user");
+
+        model.addAttribute("user", user);
+
         return "index";
     }
 
@@ -55,7 +59,11 @@ public class HomeController {
     }
 
     @GetMapping("/about-us")
-    public String aboutUs() {
+    public String aboutUs(HttpSession httpSession, Model model) {
+        User user = (User) httpSession.getAttribute("user");
+
+        model.addAttribute("user", user);
+
         return "about-us";
     }
 
@@ -120,7 +128,9 @@ public class HomeController {
     }
 
     @GetMapping("/services")
-    public String services() {
+    public String services(HttpSession httpSession, Model model) {
+        User user = (User) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
         return "services";
     }
 
