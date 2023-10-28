@@ -42,6 +42,24 @@ public class EnrollController {
             try {
                 // Insert the new program enrollment for the user
                 userProgramsRepo.insertUserProgram(userId, programId, status);
+
+                // Fetch the program name based on the programId
+                String programName = userProgramsRepo.findProgramNameByProgramId(programId);
+
+                // After successfully enrolling the user
+                model.addAttribute("enrollmentSuccess", true);
+
+                // Create a SimpleMailMessage for the enrollment notification
+                SimpleMailMessage enrollmentMessage = new SimpleMailMessage();
+                enrollmentMessage.setTo("gritdominate@gmail.com"); // Replace with the recipient's email
+                enrollmentMessage.setSubject("New Enrollment Request!");
+                enrollmentMessage.setText(firstName + " " + lastName + " wants to enroll in " + programName + "\n\nProvide him/her a personalized program and change the status to ACTIVE once done.\n\n Thank you!\nGrit Dominate Team.");
+
+                // Store the enrollmentSuccess status in the session or request attributes
+                httpSession.setAttribute("enrollmentSuccess", true);
+
+                // Send the email
+                mailSender.send(enrollmentMessage);
             } catch (Exception e) {
                 // Handle the exception
                 e.printStackTrace(); // You can log the exception for debugging
@@ -51,20 +69,9 @@ public class EnrollController {
                 return "404"; // Create an error page in your templates
             }
 
-//            SimpleMailMessage simpleMailMessage1 = new SimpleMailMessage();
-//
-//            UserPrograms userPrograms = new UserPrograms();
-//            int programID = userPrograms.getProgram_id();
-//
-//            String subject1 = "NEW FITNESS CLIENT REGISTERED!";
-//            String message1 = firstName + " " + lastName + " wants to enrol in program number " + programID;
-//
-//            simpleMailMessage1.setTo("gritdominate@gmail.com");
-//            simpleMailMessage1.setSubject(subject1);
-//            simpleMailMessage1.setText(message1);
-//
-//            mailSender.send(simpleMailMessage1);
+
         }
+
 
         // Handle the case where the user is not logged in
         // You might want to return an error page or redirect to a login page
@@ -73,3 +80,85 @@ public class EnrollController {
 
 
 }
+
+// AJAX handling way
+//package com.gs.grit.controllers;
+//
+//import com.gs.grit.entities.User;
+//import com.gs.grit.entities.UserPrograms;
+//import com.gs.grit.repositories.UserProgramsRepo;
+//import com.gs.grit.repositories.UserRepo;
+//import jakarta.servlet.http.HttpSession;
+//import jakarta.transaction.Transactional;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.ResponseBody;
+//
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//@Controller
+//public class EnrollController {
+//
+//    @Autowired
+//    private UserProgramsRepo userProgramsRepo;
+//
+//    @Autowired
+//    private JavaMailSender mailSender;
+//
+//    @Transactional
+//    @PostMapping("/enrol")
+//    @ResponseBody
+//    public Map<String, Object> enroll(HttpSession httpSession, Model model, @RequestParam("programId") int programId) {
+//        Map<String, Object> response = new HashMap<>();
+//
+//        User user = (User) httpSession.getAttribute("user");
+//
+//        if (user != null) {
+//            int userId = user.getUser_id();
+//            String status = "PENDING"; // Set the enrollment status
+//            String firstName = user.getFirst_name();
+//            String lastName = user.getLast_name();
+//
+//            try {
+//                // Insert the new program enrollment for the user
+//                userProgramsRepo.insertUserProgram(userId, programId, status);
+//
+//                // Fetch the program name based on the programId
+//                String programName = userProgramsRepo.findProgramNameByProgramId(programId);
+//
+//                // Set success response
+//                response.put("success", true);
+//                response.put("message", "Enrollment request sent successfully");
+//
+//                // Create a SimpleMailMessage for the enrollment notification
+//                SimpleMailMessage enrollmentMessage = new SimpleMailMessage();
+//                enrollmentMessage.setTo("gritdominate@gmail.com"); // Replace with the recipient's email
+//                enrollmentMessage.setSubject("New Enrollment Request!");
+//                enrollmentMessage.setText(firstName + " " + lastName + " wants to enroll in " + programName + "\n\nProvide him/her a personalized program and change the status to ACTIVE once done.\n\n Thank you!\nGrit Dominate Team.");
+//
+//                // Send the email
+//                mailSender.send(enrollmentMessage);
+//            } catch (Exception e) {
+//                // Handle the exception
+//                e.printStackTrace(); // You can log the exception for debugging
+//
+//                // Set error response
+//                response.put("success", false);
+//                response.put("message", "Error enrolling in the program. Please try again later.");
+//            }
+//        } else {
+//            // Handle the case where the user is not logged in
+//            // You might want to return an error response or redirect to a login page
+//            response.put("success", false);
+//            response.put("message", "User not logged in. Please log in to enroll.");
+//        }
+//
+//        return response;
+//    }
+//}

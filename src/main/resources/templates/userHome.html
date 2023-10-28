@@ -23,6 +23,25 @@
 	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
 	<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+
+	<!-- Include jQuery from CDN -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<style>
+		.alert.alert-success {
+		    color: #155724;
+		    background-color: #d4edda;
+		    border-color: #c3e6cb;
+		    padding: 15px;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		    margin-bottom: 20px;
+		}
+		.alert.alert-success strong {
+		    font-weight: bold;
+		}
+
+	</style>
 </head>
 
 <body>
@@ -149,6 +168,7 @@
 
 <!-- Class Timetable Section Begin -->
 <section class="class-timetable-section spad">
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -231,10 +251,15 @@
 						<li><b>Personalized:</b> Provides you a workout-specific based on your goals.</li>
 					</ul>
 					<!-- Enroll in Program 1 -->
-					<form th:action="@{/enrol}" method="post">
+					<form id="enrollmentForm1" th:action="@{/enrol}" method="post">
 						<input type="hidden" name="programId" value="1" />
 						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 1</button>
 					</form>
+					<!-- Alert for Success Message for Program 1 (Initially Hidden) -->
+					<div class="alert alert-success" id="enrollmentSuccessAlert1" style="display: none;">
+						<strong>Success!</strong> You have successfully enrolled in Program 1. The trainer will provide you with the program, and you will know when it is ready when the status becomes "ACTIVE".
+					</div>
+
 
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
 				</div>
@@ -256,10 +281,15 @@
 
 					</ul>
 					<!-- Enroll in Program 2 -->
-					<form th:action="@{/enrol}" method="post">
+					<form id="enrollmentForm2" th:action="@{/enrol}" method="post">
 						<input type="hidden" name="programId" value="2" />
 						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 2</button>
 					</form>
+					<!-- Alert for Success Message for Program 2 (Initially Hidden) -->
+					<div class="alert alert-success" id="enrollmentSuccessAlert2" style="display: none;">
+						<strong>Success!</strong> You have successfully enrolled in Program 2. The trainer will provide you with the program, and you will know when it is ready when the status becomes "ACTIVE".
+					</div>
+
 
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
 				</div>
@@ -282,10 +312,42 @@
 
 					</ul>
 					<!-- Enroll in Program 3 -->
-					<form th:action="@{/enrol}" method="post">
+					<form id="enrollmentForm3" th:action="@{/enrol}" method="post">
 						<input type="hidden" name="programId" value="3" />
 						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 3</button>
 					</form>
+
+					<!-- Alert for Success Message for Program 3 (Initially Hidden) -->
+					<div class="alert alert-success" id="enrollmentSuccessAlert3" style="display: none;">
+						<strong>Success!</strong> You have successfully enrolled in Program 3. The trainer will provide you with the program, and you will know when it is ready when the status becomes "ACTIVE".
+					</div>
+
+					<script>
+						// JavaScript to show the alert after submitting each form
+						$(document).ready(function() {
+							// Function to show the success alert and hide it after a specified time
+							function showSuccessAlert(alertId) {
+								$(alertId).show();
+								setTimeout(function() {
+									$(alertId).hide();
+								}, 5000); // 5000 milliseconds (5 seconds)
+							}
+
+							$('#enrollmentForm1').submit(function(e) {
+								showSuccessAlert('#enrollmentSuccessAlert1');
+							});
+
+							$('#enrollmentForm2').submit(function(e) {
+
+								showSuccessAlert('#enrollmentSuccessAlert2');
+							});
+
+							$('#enrollmentForm3').submit(function(e) {
+
+								showSuccessAlert('#enrollmentSuccessAlert3');
+							});
+						});
+					</script>
 
 
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
@@ -322,7 +384,6 @@
 <script src="js/jquery.slicknav.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
-
 
 
 </body>

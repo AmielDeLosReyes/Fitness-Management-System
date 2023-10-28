@@ -24,4 +24,9 @@ public interface UserProgramsRepo extends JpaRepository<UserPrograms, Integer> {
     @Query(value = "INSERT INTO userPrograms (user_id, program_id, status) VALUES (:userId, :programId, :status)", nativeQuery = true)
     void insertUserProgram(@Param("userId") int userId, @Param("programId") int programId, @Param("status") String status);
 
+
+    // Add a new query method to retrieve the program name by program ID
+    @Query(value = "SELECT program_name FROM programs WHERE program_id = :programId", nativeQuery = true)
+    String findProgramNameByProgramId(@Param("programId") int programId);
+
 }
