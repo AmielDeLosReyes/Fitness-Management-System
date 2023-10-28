@@ -16,27 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `emails`
+-- Table structure for table `user_programs`
 --
 
-DROP TABLE IF EXISTS `emails`;
+DROP TABLE IF EXISTS `user_programs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `emails` (
-  `email_id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`email_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user_programs` (
+  `user_program_id` int NOT NULL AUTO_INCREMENT,
+  `program_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `emails`
+-- Dumping data for table `user_programs`
 --
 
-LOCK TABLES `emails` WRITE;
-/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
-INSERT INTO `emails` VALUES (1,'amielxvr@gmail.com');
-/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
+LOCK TABLES `user_programs` WRITE;
+/*!40000 ALTER TABLE `user_programs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_programs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

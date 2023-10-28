@@ -31,7 +31,7 @@ CREATE TABLE `registrations` (
   `comment` varchar(255) DEFAULT NULL,
   `registration_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`registration_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `registrations` (
 
 LOCK TABLES `registrations` WRITE;
 /*!40000 ALTER TABLE `registrations` DISABLE KEYS */;
-INSERT INTO `registrations` VALUES (1,'TEST USER','TEST','amielxvr@gmail.com',NULL,'test','October 14, 2023'),(2,'Jaimie','De Los Reyes','amieljaimie@gmail.com',NULL,'43124','October 23, 2023'),(3,'gsag','gasgas','jaimieamiel@gmail.com','12345677','dafa',NULL),(4,'Test','Test','amieldump4@gmail.com','3062015554','test','2023-10-23 23:26:40.309000'),(5,'fdasfsda','fdsadfas','todas@gmail.com','3062015554','twas','October 23, 2023');
+INSERT INTO `registrations` VALUES (4,'Test','Test','amieldump4@gmail.com','3062015554','test','2023-10-23 23:26:40.309000'),(5,'fdasfsda','fdsadfas','todas@gmail.com','3062015554','twas','October 23, 2023'),(21,'Mahal','kita','amielxvr@gmail.com','241531515','test','October 26, 2023'),(22,'Jaimie Ericka','Cundangan','jescundangan@gmail.com','09954703758','','October 27, 2023');
 /*!40000 ALTER TABLE `registrations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-24 17:55:25
+-- Dump completed on 2023-10-28 23:25:24

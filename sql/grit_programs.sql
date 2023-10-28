@@ -16,27 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `emails`
+-- Table structure for table `programs`
 --
 
-DROP TABLE IF EXISTS `emails`;
+DROP TABLE IF EXISTS `programs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `emails` (
-  `email_id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`email_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `programs` (
+  `program_id` int NOT NULL,
+  `program_name` varchar(255) DEFAULT NULL,
+  `program_desc` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `emails`
+-- Dumping data for table `programs`
 --
 
-LOCK TABLES `emails` WRITE;
-/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
-INSERT INTO `emails` VALUES (1,'amielxvr@gmail.com');
-/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
+LOCK TABLES `programs` WRITE;
+/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+INSERT INTO `programs` VALUES (1,'Ready-To-Go','test'),(2,'3-Month Ready-to-Go Jumpstart','test'),(3,'1-on-1 In-Person Fit Journey Program','Package:A monthly workout plan with monthly nutrition plan, as well as in-person session.');
+/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

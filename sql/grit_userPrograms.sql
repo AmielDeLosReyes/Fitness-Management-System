@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `emails`
+-- Table structure for table `userPrograms`
 --
 
-DROP TABLE IF EXISTS `emails`;
+DROP TABLE IF EXISTS `userPrograms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `emails` (
-  `email_id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`email_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `userPrograms` (
+  `user_program_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `program_id` int DEFAULT NULL,
+  `status` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`user_program_id`),
+  KEY `user_id` (`user_id`),
+  KEY `program_id` (`program_id`),
+  CONSTRAINT `userprograms_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `userprograms_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `emails`
+-- Dumping data for table `userPrograms`
 --
 
-LOCK TABLES `emails` WRITE;
-/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
-INSERT INTO `emails` VALUES (1,'amielxvr@gmail.com');
-/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
+LOCK TABLES `userPrograms` WRITE;
+/*!40000 ALTER TABLE `userPrograms` DISABLE KEYS */;
+INSERT INTO `userPrograms` VALUES (1,3,1,'PENDING'),(2,4,2,'PENDING'),(3,5,3,'PENDING'),(4,3,3,'PENDING'),(5,3,2,'PENDING'),(6,3,1,'PENDING'),(7,3,3,'PENDING'),(8,3,1,'PENDING'),(9,3,1,'PENDING');
+/*!40000 ALTER TABLE `userPrograms` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

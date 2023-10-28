@@ -42,7 +42,7 @@ CREATE TABLE `clients` (
   `other` varchar(255) DEFAULT NULL,
   `registration_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Jaimie','De Los Reyes','amieljaimie@gmail.com','09566501803','123','234','24','M','fdas','feds','fds','fdas','asdf','fd','feds','fdsa','October 13, 2023'),(2,'Amiel','De Los Reyes','amielxvr@gmail.com','09566501830','170','90','24','Male','Test exp','test routine','test diet','test inj','test strug','test journey','test driven ','terst other','October 23, 2023'),(3,'HAHHAHA','FFDAS','jaimieamiel@gmail.com','','','','','','','','','','','','','','October 3, 2023');
+INSERT INTO `clients` VALUES (1,'Jaimie','De Los Reyes','amieljaimie@gmail.com','09566501803','123','234','24','M','fdas','feds','fds','fdas','asdf','fd','feds','fdsa','October 13, 2023'),(3,'HAHHAHA','FFDAS','jaimieamiel@gmail.com','','','','','','','','','','','','','','October 3, 2023'),(5,'Amiel','Xavier','amielxvr@gmail.com','09566501830','170','90','24','Male','Active','6 days a week','trash','ankle','loosing fat','want to lean out','hell yeah','lets get it\r\n','October 26, 2023'),(6,'Jaimie Ericka','Cundangan','jescundangan@gmail.com','09954703758','110','55','23','female','','','','','','','','','October 27, 2023');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-24 17:55:25
+-- Dump completed on 2023-10-28 23:25:24
