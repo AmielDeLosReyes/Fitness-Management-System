@@ -189,8 +189,8 @@
 								<span>Amiel De Los Reyes</span>
 							</td>
 							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
-								<h5>PENDING</h5>
-<!--								<span>Amiel De Los Reyes</span>-->
+								<h5 th:text="${program.status}"></h5>
+<!--								<pre th:text="${userPrograms}"></pre> &lt;!&ndash; Add it here to debug data &ndash;&gt;-->
 							</td>
 
 						</tr>
@@ -230,7 +230,12 @@
 						<li><b>You Decide:</b> You can choose how often you want to do the exercises.</li>
 						<li><b>Personalized:</b> Provides you a workout-specific based on your goals.</li>
 					</ul>
-					<a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+					<!-- Enroll in Program 1 -->
+					<form th:action="@{/enrol}" method="post">
+						<input type="hidden" name="programId" value="1" />
+						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 1</button>
+					</form>
+
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
 				</div>
 			</div>
@@ -250,7 +255,12 @@
 						<li><b>See Progress:</b> You'll notice you're getting better and stronger.</li>
 
 					</ul>
-					<a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+					<!-- Enroll in Program 2 -->
+					<form th:action="@{/enrol}" method="post">
+						<input type="hidden" name="programId" value="2" />
+						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 2</button>
+					</form>
+
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
 				</div>
 			</div>
@@ -271,7 +281,13 @@
 						<li><b>Continuous Support:</b> Ongoing assistance as you progress on your journey.</li>
 
 					</ul>
-					<a href="/userRegistration" class="primary-btn pricing-btn">Enroll now</a>
+					<!-- Enroll in Program 3 -->
+					<form th:action="@{/enrol}" method="post">
+						<input type="hidden" name="programId" value="3" />
+						<button type="submit" class="primary-btn pricing-btn">Enroll IN PROGRAM 3</button>
+					</form>
+
+
 					<!--                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>-->
 				</div>
 			</div>

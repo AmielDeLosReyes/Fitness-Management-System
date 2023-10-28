@@ -217,13 +217,15 @@ public class HomeController {
             // Create a list to hold the program data
             List<ProgramData> userPrograms = new ArrayList<>();
 
-            // Iterate through the program data and create ProgramData objects
             for (Object[] programData : userProgramData) {
                 Integer programId = (Integer) programData[0];
                 String programName = (String) programData[1];
-                ProgramData program = new ProgramData(programId, programName);
+                String status = (programData.length > 2) ? (String) programData[2] : "PENDING"; // Set status to "pending" by default if not present
+                ProgramData program = new ProgramData(programId, programName, "PENDING");
+
                 userPrograms.add(program);
             }
+
 
 
             model.addAttribute("welcomeMessage", welcomeMessage);
@@ -289,13 +291,14 @@ public class HomeController {
             // Create a list to hold the program data
             List<ProgramData> userPrograms = new ArrayList<>();
 
-            // Iterate through the program data and create ProgramData objects
             for (Object[] programData : userProgramData) {
                 Integer programId = (Integer) programData[0];
                 String programName = (String) programData[1];
-                ProgramData program = new ProgramData(programId, programName);
+                String status = (programData.length > 2) ? (String) programData[2] : "PENDING"; // Set status to "pending" by default if not present
+                ProgramData program = new ProgramData(programId, programName, "PENDING");
                 userPrograms.add(program);
             }
+
 
             String m = user.getFirst_name() + "'s Programs";
             // Add user-related attributes to the model

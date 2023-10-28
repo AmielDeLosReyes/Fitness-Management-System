@@ -16,6 +16,17 @@ public class UserPrograms {
     @Column(name="program_id")
     private Integer program_id;
 
+    @Column(name="status")
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public UserPrograms() {
     }
 
