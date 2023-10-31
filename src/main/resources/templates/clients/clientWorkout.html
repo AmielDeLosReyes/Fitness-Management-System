@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Gym Template">
+  <meta name="keywords" content="Gym, unica, creative, html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Timetable - Grit Dominate</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <!--    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">-->
+  <script src="https://kit.fontawesome.com/0ef1cecb74.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="css/barfiller.css" type="text/css">
+  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <style>
+    /* Style for the input-wrapper class */
+    /* Style for the input-wrapper class */
+    .input-wrapper {
+      position: relative;
+    }
+
+    /* Style for the text input fields */
+    .input-wrapper input[type="text"] {
+      width: 80px; /* Adjust the width as needed */
+      padding: 5px;
+      border: 1px solid #ccc; /* Define the border style */
+      border-radius: 5px; /* Add rounded corners */
+      background-color: #f0f0f0; /* Greyish background color */
+      font-size: 14px;
+      color: #333; /* Text color */
+    }
+
+    /* Optional: Style for input placeholders (grayed text) */
+    .input-wrapper input[type="text"]::placeholder {
+      color: #808080; /* Adjust the placeholder text color */
+    }
+
+    /* Optional: Style for input on focus */
+    .input-wrapper input[type="text"]:focus {
+      border-color: #808080; /* Adjust the border color on focus */
+      outline: none; /* Remove the default focus outline */
+    }
+
+  </style>
+</head>
+
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<!-- Offcanvas Menu Section Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+  <div class="canvas-close">
+    <i class="fa fa-close"></i>
+  </div>
+  <div class="canvas-search search-switch">
+    <i class="fa fa-search"></i>
+  </div>
+  <nav class="canvas-menu mobile-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about-us">About Us</a></li>
+      <!--                <li><a href="/classes">Programs</a></li>-->
+      <li><a href="/services">Services</a></li>
+      <li><a href="/team">Shop</a></li>
+      <li><a href="#">Pages</a>
+        <ul class="dropdown">
+          <li><a href="/about-us">About us</a></li>
+          <li><a href="/class-timetable">Programs timetable</a></li>
+          <li><a href="/bmi-calculator">Bmi calculate</a></li>
+          <li><a href="/team">Shop</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/blog">Our blog</a></li>
+          <!--                        <li><a href="/404">404</a></li>-->
+        </ul>
+      </li>
+      <li><a href="/userRegistration">Registration</a></li>
+    </ul>
+  </nav>
+  <div id="mobile-menu-wrap"></div>
+  <div class="canvas-social">
+
+    <a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
+    <a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
+    <a href="https://m.facebook.com/grit.dominate"><i class="fa fa-facebook"></i></a>
+  </div>
+</div>
+<!-- Offcanvas Menu Section End -->
+
+<!-- Header Section Begin -->
+<header class="header-section">
+  <div class="container-fluid">
+    <div class="row" style="padding-top:0px">
+      <div class="col-lg-3" style="padding-left:50px;">
+        <div class="logo">
+          <a href="/">
+            <img src="img/logo2.png" alt="" style="height: 65px;">
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about-us">About Us</a></li>
+            <!--                            <li><a href="/class-details">Programs</a></li>-->
+            <li><a href="/services">Services</a></li>
+            <li><a href="/team">Shop</a></li>
+            <li class="active"><a href="#">Pages</a>
+              <ul class="dropdown">
+                <!--                                    <li><a href="/about-us">About us</a></li>-->
+                <li><a href="/class-timetable">Programs timetable</a></li>
+                <li><a href="/bmi-calculator">Bmi calculate</a></li>
+                <!--                                    <li><a href="/team">Shop</a></li>-->
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/blog">Our blog</a></li>
+                <!--                                    <li><a href="/404">404</a></li>-->
+              </ul>
+            </li>
+            <li><a href="userRegistration">Registration</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-lg-3">
+        <div class="top-option">
+          <div class="to-search search-switch">
+            <i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;
+            <a href="/userLogin"><i class="fa fa-user"></i></a>
+          </div>
+          <div class="to-social">
+            <a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
+            <a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="https://m.facebook.com/grit.dominate"><i class="fa fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="canvas-open">
+      <i class="fa fa-bars"></i>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="breadcrumb-text">
+          <h2>My 1-on-1 Session Availability</h2>
+          <div class="bt-option">
+            <a href="/">Home</a>
+            <a href="#">Pages</a>
+            <span>Services</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Class Timetable Section Begin -->
+<section class="class-timetable-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section-title">
+          <span>Ready-To-Go</span>
+          <h2>Your Workouts</h2>
+        </div>
+      </div>
+<!--      <div class="col-lg-6">-->
+<!--        <div class="table-controls">-->
+<!--          <ul>-->
+<!--            <li class="active" data-tsfilter="all">All events</li>-->
+<!--            <li data-tsfilter="fitness">Fitness tips</li>-->
+<!--            <li data-tsfilter="motivation">Motivation</li>-->
+<!--            <li data-tsfilter="workout">Workout</li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="class-timetable">
+          <table>
+            <thead>
+            <tr>
+              <th>Day 1</th>
+              <th>Week 1</th>
+              <th>Reps & Sets</th>
+              <th>Week 2</th>
+              <th>Reps & Sets</th>
+              <th>Week 3</th>
+              <th>Reps & Sets</th>
+              <th>Week 4</th>
+              <th>Reps & Sets</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="workout : ${workouts}">
+                <td class="class-time" th:text="${workout.workout_name}"></td>
+              <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                <a th:href="${workout.workout_location}" target="_blank">Demo URL</a>
+<!--                <h5></h5>-->
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="hover-bg ts-meta" data-tsmeta="fitness">
+                <h5>x10 & 3</h5>
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="dark-bg hover-bg ts-meta" data-tsmeta="workout">
+                <a th:href="${workout.workout_location}" target="_blank">Demo URL</a>
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="hover-bg ts-meta" data-tsmeta="fitness">
+                <h5>x12 & 3</h5>
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+<!--              <td class="dark-bg blank-td"></td>-->
+              <td class="dark-bg hover-bg ts-meta" data-tsmeta="motivation">
+                <a th:href="${workout.workout_location}" target="_blank">Demo URL</a>
+<!--                <h5>HIIT</h5>-->
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="hover-bg ts-meta" data-tsmeta="workout">
+                <h5>x15 & 3</h5>
+<!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="dark-bg hover-bg ts-meta" data-tsmeta="motivation">
+                <a th:href="${workout.workout_location}" target="_blank">Demo URL</a>
+                <!--                <h5>HIIT</h5>-->
+                <!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+              <td class="hover-bg ts-meta" data-tsmeta="workout">
+                <h5>x15 & 3</h5>
+                <!--                <span>Amiel De Los Reyes</span>-->
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Class Timetable Section End -->
+
+<!-- Footer Section Begin -->
+<section class="footer-section" th:replace="~{footer}">
+</section>
+<!-- Footer Section End -->
+
+<!-- Search model Begin -->
+
+<!-- Search model end -->
+
+<!-- Js Plugins -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.barfiller.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+
+</html>

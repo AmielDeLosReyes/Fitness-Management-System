@@ -217,7 +217,8 @@
 						<tr th:each="program, rowStat : ${userPrograms}">
 							<td class="class-time" style="width:500px" th:text="${rowStat.count}"></td>
 							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
-								<h5 th:text="${program.programName}"></h5>
+								<h5>
+									<a th:href="@{clientWorkout}" th:text="${program.programName}"></a></h5>
 								<span>Amiel De Los Reyes</span>
 							</td>
 							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">
@@ -232,6 +233,7 @@
 		</div>
 	</div>
 </section>
+
 
 <!-- Class Timetable Section End -->
 <!-- Pricing Section Begin -->

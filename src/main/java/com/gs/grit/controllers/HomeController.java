@@ -3,6 +3,7 @@ package com.gs.grit.controllers;
 import com.gs.grit.entities.*;
 import com.gs.grit.entities.Admin;
 import com.gs.grit.repositories.*;
+import jakarta.persistence.Tuple;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -38,6 +41,12 @@ public class HomeController {
 
     @Autowired
     private ProgramsRepo programsRepo;
+
+    @Autowired
+    private ProgramWorkoutsRepo programWorkoutsRepo;
+
+    @Autowired
+    private UserWorkoutsRepo userWorkoutsRepo;
 
     @GetMapping("/")
     public String home(HttpSession httpSession, Model model) {
@@ -221,6 +230,7 @@ public class HomeController {
             String m = firstName + "'s Programs";
             int userId = user.getUser_id();
 
+
             // Retrieve the user's program data
             List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
 
@@ -236,7 +246,18 @@ public class HomeController {
                 userPrograms.add(program);
             }
 
+            List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
+            List<Map<String, Object>> workouts = new ArrayList<>();
 
+            for (Tuple tuple : workoutTuples) {
+                Map<String, Object> workout = new HashMap<>();
+                workout.put("program_id", tuple.get(0, Integer.class));
+                workout.put("workout_id", tuple.get(1, Integer.class));
+                workout.put("workout_name", tuple.get(2, String.class));
+                workouts.add(workout);
+            }
+
+            model.addAttribute("workouts", workouts);
 
             model.addAttribute("welcomeMessage", welcomeMessage);
             model.addAttribute("m", m);
@@ -373,6 +394,44 @@ public class HomeController {
             session.invalidate();
         }
         return "userLogin"; // Redirect to the login page
+    }
+
+    @GetMapping("/clientWorkout")
+    public String clientWorkout(HttpSession httpSession, Model model) {
+        User user = (User) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
+
+//        int userId = user.getUser_id();
+
+        List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
+        List<Map<String, Object>> workouts = new ArrayList<>();
+
+        for (Tuple tuple : workoutTuples) {
+            Map<String, Object> workout = new HashMap<>();
+            workout.put("program_id", tuple.get(0, Integer.class));
+            workout.put("workout_id", tuple.get(1, Integer.class));
+            workout.put("workout_name", tuple.get(2, String.class));
+            workout.put("workout_location", tuple.get(3, String.class));
+            workouts.add(workout);
+        }
+
+//        List<Tuple> workoutTuples = userWorkoutsRepo.findWorkoutsByUserProgram(userId); // Call your custom query method
+//
+//        List<Map<String, Object>> workouts = new ArrayList<>();
+//
+//        for (Tuple tuple : workoutTuples) {
+//            Map<String, Object> workout = new HashMap<>();
+//            workout.put("user_id", tuple.get(0, Integer.class)); // Assuming user_id is in the first position
+//            workout.put("program_id", tuple.get(1, Integer.class));
+//            workout.put("program_name", tuple.get(2, String.class));
+//            workout.put("workout_name", tuple.get(3, String.class));
+//            workout.put("workout_location", tuple.get(4, String.class)); // Assuming workout_location is in the fifth position
+//            workouts.add(workout);
+//        }
+
+        model.addAttribute("workouts", workouts);
+
+        return "clients/clientWorkout";
     }
 
 }
