@@ -448,16 +448,21 @@ public class HomeController {
         if (!workouts.isEmpty()) {
             List<Map<String, Object>> workoutData = new ArrayList<>();
 
+            String programName = "";
+
             for (Tuple tuple : workouts) {
                 Map<String, Object> workout = new HashMap<>();
                 workout.put("program_id", tuple.get(0, Integer.class));
                 workout.put("workout_id", tuple.get(1, Integer.class));
                 workout.put("workout_name", tuple.get(2, String.class));
                 workout.put("workout_location", tuple.get(3, String.class));
+                workout.put("program_name", tuple.get(4, String.class));
+                programName = tuple.get(4, String.class);
                 workoutData.add(workout);
             }
 
             model.addAttribute("workouts", workoutData);
+            model.addAttribute("programName", programName);
 
             return "clients/clientWorkout";
         } else {
