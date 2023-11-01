@@ -24,11 +24,10 @@ public interface UserWorkoutsRepo extends JpaRepository<UserWorkouts, UserWorkou
             "WHERE user_id = :userId", nativeQuery = true)
     List<Tuple> findWorkoutsByUserProgram(@Param("userId") Integer userId);
 
-    @Query(value = "SELECT DISTINCT p.program_id, w.workout_id, w.workout_name, w.workout_location " +
-            "FROM program_workouts pw " +
-            "JOIN programs p ON pw.program_id = p.program_id " +
-            "JOIN workouts w ON pw.workout_id = w.workout_id " +
-            "JOIN userPrograms up ON up.program_id = p.program_id " +
-            "WHERE p.program_id = :programId AND up.user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT p.program_id, w.workout_id, w.workout_name, w.workout_location " +
+            "FROM programs p " +
+            "INNER JOIN user_workouts uw ON uw.program_id = p.program_id " +
+            "INNER JOIN workouts w ON w.workout_id = uw.workout_id " +
+            "WHERE uw.program_id = :programId AND uw.user_id = :userId", nativeQuery = true)
     List<Tuple> findWorkouts(@Param("programId") Integer programId, @Param("userId") Integer userId);
 }

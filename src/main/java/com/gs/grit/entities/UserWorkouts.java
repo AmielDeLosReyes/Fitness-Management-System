@@ -6,7 +6,7 @@ import java.io.Serializable;
 import com.gs.grit.entities.UserWorkoutsId;
 
 @Entity
-@Table(name = "user_workout")
+@Table(name = "user_workouts")
 public class UserWorkouts implements Serializable {
 
     @EmbeddedId

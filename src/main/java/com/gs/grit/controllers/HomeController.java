@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 public class HomeController {
@@ -170,44 +171,44 @@ public class HomeController {
 //        return "admin/profile";
 //    }
 
-    @GetMapping("/userHome")
-    public String userHome(HttpSession httpSession, Model model) {
-        User us = (User) httpSession.getAttribute("u");
-
-        if (us != null) {
-            String welcomeMessage = "Welcome to your homepage, " + us.getFirst_name() + "!";
-            String firstName = us.getFirst_name();
-            String lastName = us.getLast_name();
-
-            String m = firstName + "'s Programs";
-            int userId = us.getUser_id();
-
-            // Retrieve the user's program data
-            List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
-
-            // Create a list to hold the program data
-            List<ProgramData> userPrograms = new ArrayList<>();
-
-            // Iterate through the program data and create ProgramData objects
-            for (Object[] programData : userProgramData) {
-                Integer programId = (Integer) programData[0];
-                String programName = (String) programData[1];
-                ProgramData program = new ProgramData(programId, programName);
-                userPrograms.add(program);
-            }
-
-
-            model.addAttribute("welcomeMessage", welcomeMessage);
-            model.addAttribute("m", m);
-            model.addAttribute("firstName", firstName);
-            model.addAttribute("lastName", lastName);
-            model.addAttribute("userPrograms", userPrograms);
-            model.addAttribute("userId", userId);
-            return "userHome";
-        }
-
-        return "userLogin";
-    }
+//    @GetMapping("/userHome")
+//    public String userHome(HttpSession httpSession, Model model) {
+//        User us = (User) httpSession.getAttribute("u");
+//
+//        if (us != null) {
+//            String welcomeMessage = "Welcome to your homepage, " + us.getFirst_name() + "!";
+//            String firstName = us.getFirst_name();
+//            String lastName = us.getLast_name();
+//
+//            String m = firstName + "'s Programs";
+//            int userId = us.getUser_id();
+//
+//            // Retrieve the user's program data
+//            List<Object[]> userProgramData = userProgramsRepo.findProgramDataByUserId(userId);
+//
+//            // Create a list to hold the program data
+//            List<ProgramData> userPrograms = new ArrayList<>();
+//
+//            // Iterate through the program data and create ProgramData objects
+//            for (Object[] programData : userProgramData) {
+//                Integer programId = (Integer) programData[0];
+//                String programName = (String) programData[1];
+//                ProgramData program = new ProgramData(programId, programName);
+//                userPrograms.add(program);
+//            }
+//
+//
+//            model.addAttribute("welcomeMessage", welcomeMessage);
+//            model.addAttribute("m", m);
+//            model.addAttribute("firstName", firstName);
+//            model.addAttribute("lastName", lastName);
+//            model.addAttribute("userPrograms", userPrograms);
+//            model.addAttribute("userId", userId);
+//            return "userHome";
+//        }
+//
+//        return "userLogin";
+//    }
 
     @GetMapping("/test")
     public String test() {
@@ -344,10 +345,10 @@ public class HomeController {
             model.addAttribute("m", m);
             model.addAttribute("userId", userId);
 
-            return "userHome";
+            return "redirect:/userLogin";
         } else {
             // Authentication failed, return to the login page
-            return "userLogin";
+            return "redirect:/userHome";
         }
     }
 
@@ -426,34 +427,42 @@ public class HomeController {
 //        return "redirect:/userLogin";
 //    }
 
+    private static final Logger LOGGER = Logger.getLogger(HomeController.class.getName());
+
     @GetMapping("/clientWorkout")
     public String clWorkout(@RequestParam(name = "programId") int programId, @RequestParam(name = "userId") int userId, HttpSession httpSession, Model model) {
         User user = (User) httpSession.getAttribute("user");
         model.addAttribute("user", user);
 
-        if(user != null){
-            List<Tuple> workouts = userWorkoutsRepo.findWorkouts(programId, userId);
+        // Log the values of programId and userId
 
-            if (!workouts.isEmpty()) {
-                List<Map<String, Object>> workoutData = new ArrayList<>();
+        LOGGER.info("Received programId: " + programId);
+        LOGGER.info("Received userId: " + userId);
+        LOGGER.info("User: " + user.getFirst_name()); // Replace with the actual user property you want to log
 
-                for (Tuple tuple : workouts) {
-                    Map<String, Object> workout = new HashMap<>();
-                    workout.put("program_id", tuple.get(0, Integer.class));
-                    workout.put("workout_id", tuple.get(1, Integer.class));
-                    workout.put("workout_name", tuple.get(2, String.class));
-                    workout.put("workout_location", tuple.get(3, String.class));
-                    workoutData.add(workout);
-                }
+        List<Tuple> workouts = userWorkoutsRepo.findWorkouts(programId, userId);
 
-                model.addAttribute("workouts", workoutData);
+        // Log whether the workouts list is empty or not
+        LOGGER.info("Is workouts empty? " + workouts.isEmpty());
 
-                return "clients/clientWorkout";
-            } else {
-                return "404";
+        if (!workouts.isEmpty()) {
+            List<Map<String, Object>> workoutData = new ArrayList<>();
+
+            for (Tuple tuple : workouts) {
+                Map<String, Object> workout = new HashMap<>();
+                workout.put("program_id", tuple.get(0, Integer.class));
+                workout.put("workout_id", tuple.get(1, Integer.class));
+                workout.put("workout_name", tuple.get(2, String.class));
+                workout.put("workout_location", tuple.get(3, String.class));
+                workoutData.add(workout);
             }
+
+            model.addAttribute("workouts", workoutData);
+
+            return "clients/clientWorkout";
+        } else {
+            return "404";
         }
-        return "redirect:/userLogin";
     }
 
 }
