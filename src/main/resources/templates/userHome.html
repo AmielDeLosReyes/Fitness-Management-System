@@ -218,7 +218,14 @@
 							<td class="class-time" style="width:500px" th:text="${rowStat.count}"></td>
 							<td class="dark-bg hover-bg ts-meta" data-tsmeta="workout" style="width:500px">
 								<h5>
-									<a th:href="@{clientWorkout}" th:text="${program.programName}"></a></h5>
+
+<!--									<a th:href="@{/clientWorkout/{programId}/{userId}(programId=${program.programId}, userId=${userId})}" th:text="${program.programName}">-->
+<!--											&lt;!&ndash; Link content here &ndash;&gt;-->
+<!--									</a>-->
+									<a th:href="@{/clientWorkout(programId=${program.programId}, userId=${userId})}" th:text="${program.programName}">
+										<!-- Link content here -->
+									</a>
+									</h5>
 								<span>Amiel De Los Reyes</span>
 							</td>
 							<td class="hover-bg ts-meta" data-tsmeta="fitness" style="width:500px">

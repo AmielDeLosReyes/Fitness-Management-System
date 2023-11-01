@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -221,6 +222,7 @@ public class HomeController {
     @GetMapping("/userLogin")
     public String userLogin(HttpSession httpSession, Model model){
         User user = (User) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
 
         if(user != null) {
             String welcomeMessage = "Welcome to your homepage, " + user.getFirst_name() + "!";
@@ -245,19 +247,19 @@ public class HomeController {
                 ProgramData program = new ProgramData(programId, programName, status);
                 userPrograms.add(program);
             }
+//
+//            List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
+//            List<Map<String, Object>> workouts = new ArrayList<>();
+//
+//            for (Tuple tuple : workoutTuples) {
+//                Map<String, Object> workout = new HashMap<>();
+//                workout.put("program_id", tuple.get(0, Integer.class));
+//                workout.put("workout_id", tuple.get(1, Integer.class));
+//                workout.put("workout_name", tuple.get(2, String.class));
+//                workouts.add(workout);
+//            }
 
-            List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
-            List<Map<String, Object>> workouts = new ArrayList<>();
-
-            for (Tuple tuple : workoutTuples) {
-                Map<String, Object> workout = new HashMap<>();
-                workout.put("program_id", tuple.get(0, Integer.class));
-                workout.put("workout_id", tuple.get(1, Integer.class));
-                workout.put("workout_name", tuple.get(2, String.class));
-                workouts.add(workout);
-            }
-
-            model.addAttribute("workouts", workouts);
+//            model.addAttribute("workouts", workouts);
 
             model.addAttribute("welcomeMessage", welcomeMessage);
             model.addAttribute("m", m);
@@ -340,6 +342,7 @@ public class HomeController {
             model.addAttribute("firstName", firstName);
             model.addAttribute("userPrograms", userPrograms);
             model.addAttribute("m", m);
+            model.addAttribute("userId", userId);
 
             return "userHome";
         } else {
@@ -396,42 +399,61 @@ public class HomeController {
         return "userLogin"; // Redirect to the login page
     }
 
+//    @GetMapping("/clientWorkout")
+//    public String clientWorkout(HttpSession httpSession, Model model) {
+//        User user = (User) httpSession.getAttribute("user");
+//        model.addAttribute("user", user);
+//
+//        if(user != null) {
+//            int userId = user.getUser_id();
+//
+//            List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
+//            List<Map<String, Object>> workouts = new ArrayList<>();
+//
+//            for (Tuple tuple : workoutTuples) {
+//                Map<String, Object> workout = new HashMap<>();
+//                workout.put("program_id", tuple.get(0, Integer.class));
+//                workout.put("workout_id", tuple.get(1, Integer.class));
+//                workout.put("workout_name", tuple.get(2, String.class));
+//                workout.put("workout_location", tuple.get(3, String.class));
+//                workouts.add(workout);
+//            }
+//
+//            model.addAttribute("workouts", workouts);
+//
+//            return "clients/clientWorkout";
+//        }
+//        return "redirect:/userLogin";
+//    }
+
     @GetMapping("/clientWorkout")
-    public String clientWorkout(HttpSession httpSession, Model model) {
+    public String clWorkout(@RequestParam(name = "programId") int programId, @RequestParam(name = "userId") int userId, HttpSession httpSession, Model model) {
         User user = (User) httpSession.getAttribute("user");
         model.addAttribute("user", user);
 
-//        int userId = user.getUser_id();
+        if(user != null){
+            List<Tuple> workouts = userWorkoutsRepo.findWorkouts(programId, userId);
 
-        List<Tuple> workoutTuples = programWorkoutsRepo.findWorkoutsByProgramId(1);
-        List<Map<String, Object>> workouts = new ArrayList<>();
+            if (!workouts.isEmpty()) {
+                List<Map<String, Object>> workoutData = new ArrayList<>();
 
-        for (Tuple tuple : workoutTuples) {
-            Map<String, Object> workout = new HashMap<>();
-            workout.put("program_id", tuple.get(0, Integer.class));
-            workout.put("workout_id", tuple.get(1, Integer.class));
-            workout.put("workout_name", tuple.get(2, String.class));
-            workout.put("workout_location", tuple.get(3, String.class));
-            workouts.add(workout);
+                for (Tuple tuple : workouts) {
+                    Map<String, Object> workout = new HashMap<>();
+                    workout.put("program_id", tuple.get(0, Integer.class));
+                    workout.put("workout_id", tuple.get(1, Integer.class));
+                    workout.put("workout_name", tuple.get(2, String.class));
+                    workout.put("workout_location", tuple.get(3, String.class));
+                    workoutData.add(workout);
+                }
+
+                model.addAttribute("workouts", workoutData);
+
+                return "clients/clientWorkout";
+            } else {
+                return "404";
+            }
         }
-
-//        List<Tuple> workoutTuples = userWorkoutsRepo.findWorkoutsByUserProgram(userId); // Call your custom query method
-//
-//        List<Map<String, Object>> workouts = new ArrayList<>();
-//
-//        for (Tuple tuple : workoutTuples) {
-//            Map<String, Object> workout = new HashMap<>();
-//            workout.put("user_id", tuple.get(0, Integer.class)); // Assuming user_id is in the first position
-//            workout.put("program_id", tuple.get(1, Integer.class));
-//            workout.put("program_name", tuple.get(2, String.class));
-//            workout.put("workout_name", tuple.get(3, String.class));
-//            workout.put("workout_location", tuple.get(4, String.class)); // Assuming workout_location is in the fifth position
-//            workouts.add(workout);
-//        }
-
-        model.addAttribute("workouts", workouts);
-
-        return "clients/clientWorkout";
+        return "redirect:/userLogin";
     }
 
 }
