@@ -36,7 +36,7 @@ CREATE TABLE `programs` (
 
 LOCK TABLES `programs` WRITE;
 /*!40000 ALTER TABLE `programs` DISABLE KEYS */;
-INSERT INTO `programs` VALUES (1,'Ready-To-Go','test'),(2,'3-Month Ready-to-Go Jumpstart','test'),(3,'1-on-1 In-Person Fit Journey Program','Package:A monthly workout plan with monthly nutrition plan, as well as in-person session.');
+INSERT INTO `programs` VALUES (1,'Ready-To-Go','Package: A 4-week monthly workout plan with monthly nutrition plan and unlimited consultation'),(2,'3-Month Ready-to-Go Jumpstart','Package: A 3-month workout plan with monthly nutrition plan and unlimited consultation.'),(3,'1-on-1 In-Person Fit Journey Program','Package:A monthly workout plan with monthly nutrition plan, as well as in-person session.');
 /*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-28 23:25:24
+-- Dump completed on 2023-11-05  9:56:09

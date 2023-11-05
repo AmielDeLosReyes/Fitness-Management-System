@@ -31,7 +31,7 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `registration_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (3,'Amiel','Xavier','amielxvr@gmail.com','0956065593','password','October 27, 2023'),(4,'Pogi','Amiel','amielpogi4@yahoo.com','12345689','password','October 28, 2023'),(5,'Jaimie','Amiel','jaimieamiel@gmail.com','1234566','password','October 28, 2023');
+INSERT INTO `user` VALUES (3,'Amiel','Xavier','amielxvr@gmail.com','0956065593','password','October 27, 2023'),(4,'Pogi','Amiel','amielpogi4@yahoo.com','12345689','password','October 28, 2023'),(5,'Jaimie','Amiel','jaimieamiel@gmail.com','1234566','password','October 28, 2023'),(6,'jaimie','ericka','jescundangan@gmail.com','09954703758','Ericka123','October 28, 2023'),(8,'Tuknoy','Buknoy','amieljaimie@gmail.com','24114141','password','October 29, 2023'),(9,'Test','User','testuser@gmail.com','00000000','password','November 5, 2023'),(13,'John','Doe','johndoe@gmail.com','09560000000','password','November 5, 2023');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-28 23:25:24
+-- Dump completed on 2023-11-05  9:56:10
