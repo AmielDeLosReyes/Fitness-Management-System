@@ -304,7 +304,7 @@ public class HomeController {
     }
 
 
-    @PostMapping("authenticate")
+    @PostMapping("/authenticate")
     public String userAuth(@RequestParam String email,
                            @RequestParam String password,
                            Model model,
