@@ -8,7 +8,7 @@ public class UserPrograms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_program_id", unique = true, nullable = false, columnDefinition = "INT DEFAULT 0")
+    @Column(name = "user_program_id")
     private Integer user_program_id;
 
     @Column(name = "user_id")
