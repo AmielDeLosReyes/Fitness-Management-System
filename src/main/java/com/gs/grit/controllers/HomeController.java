@@ -220,6 +220,11 @@ public class HomeController {
         return "email";
     }
 
+    @GetMapping("/404pending")
+    public String notFoundpending() {
+        return "404pending";
+    }
+
     @GetMapping("/userLogin")
     public String userLogin(HttpSession httpSession, Model model){
         User user = (User) httpSession.getAttribute("user");

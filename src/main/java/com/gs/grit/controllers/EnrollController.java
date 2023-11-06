@@ -66,7 +66,7 @@ public class EnrollController {
 
                 // You can also return an error page or a message to the user
                 model.addAttribute("errorMessage", "Error enrolling in the program. Please try again later.");
-                return "404"; // Create an error page in your templates
+                return "404pending"; // Create an error page in your templates
             }
 
 
