@@ -102,7 +102,9 @@
 								<!--                                    <li><a href="/404">404</a></li>-->
 							</ul>
 						</li>
-						<li><a href="userRegistration">Registration</a></li>
+						<li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
+
+						<li><a href="/userLogin">Login</a></li>
 					</ul>
 				</nav>
 			</div>
