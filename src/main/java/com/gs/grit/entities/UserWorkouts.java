@@ -20,6 +20,25 @@ public class UserWorkouts implements Serializable {
     @JoinColumn(name = "workout_id", insertable = false, updatable = false)
     private Workouts workout;
 
+    @Column(name = "program_id", insertable = false, updatable = false)
+    private Integer programId;
+
+
+    public UserWorkoutsId getId() {
+        return id;
+    }
+
+    public void setId(UserWorkoutsId id) {
+        this.id = id;
+    }
+
+    public Integer getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(Integer programId) {
+        this.programId = programId;
+    }
 
     public UserWorkouts(User user, Workouts workout) {
         this.user = user;
