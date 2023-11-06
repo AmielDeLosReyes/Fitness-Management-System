@@ -26,6 +26,15 @@ public class EnrollController {
     @Autowired
     private JavaMailSender mailSender;
 
+    private Integer getNextUserProgramId() {
+        // Query the database to find the maximum user_program_id
+        Integer maxUserProgramId = userProgramsRepo.findMaxUserProgramId();
+
+        // Increment the maximum value to get the next unique user_program_id
+        return (maxUserProgramId != null) ? maxUserProgramId + 1 : 1;
+    }
+
+
     @Transactional
     @PostMapping("/enrol")
     public String enrol(HttpSession httpSession, Model model, @RequestParam("programId") int programId) {
@@ -40,8 +49,12 @@ public class EnrollController {
 
 
             try {
+
+                // Manually find the next available user_program_id
+                Integer userProgramId = getNextUserProgramId();
+
                 // Insert the new program enrollment for the user
-                userProgramsRepo.insertUserProgram(userId, programId, status);
+                userProgramsRepo.insertUserProgram(userProgramId, userId, programId, status);
 
                 // Fetch the program name based on the programId
                 String programName = userProgramsRepo.findProgramNameByProgramId(programId);
@@ -68,8 +81,6 @@ public class EnrollController {
                 model.addAttribute("errorMessage", "Error enrolling in the program. Please try again later.");
                 return "404pending"; // Create an error page in your templates
             }
-
-
         }
 
 
