@@ -78,12 +78,13 @@
           <!--                        <li><a href="/404">404</a></li>-->
         </ul>
       </li>
-      <li><a href="/userRegistration">Registration</a></li>
+      <li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
+      <li><a href="/userLogin">Login</a></li>
     </ul>
   </nav>
   <div id="mobile-menu-wrap"></div>
   <div class="canvas-social">
-
+    <a href="/userLogin"><i class="fa fa-user"></i></a>
     <a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
     <a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
     <a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
