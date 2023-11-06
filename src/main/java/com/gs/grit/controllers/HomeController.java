@@ -471,7 +471,7 @@ public class HomeController {
 
             return "clients/clientWorkout";
         } else {
-            return "404";
+            return "404pending";
         }
     }
 
