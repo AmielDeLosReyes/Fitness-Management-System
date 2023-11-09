@@ -118,7 +118,7 @@ public class ClientFormController {
 
             mailSender.send(simpleMailMessage1);
 
-            return "/successClientForm";
+            return "successClientForm";
         }
 
         // return to login page
