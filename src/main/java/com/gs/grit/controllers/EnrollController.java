@@ -46,6 +46,7 @@ public class EnrollController {
             String status = "PENDING"; // Set the enrollment status
             String firstName = user.getFirst_name();
             String lastName = user.getLast_name();
+            String email = user.getEmail();
 
 
             try {
@@ -73,6 +74,25 @@ public class EnrollController {
 
                 // Send the email
                 mailSender.send(enrollmentMessage);
+
+                // Create a SimpleMailMessage for the user
+                SimpleMailMessage enrollmentMessage1 = new SimpleMailMessage();
+                enrollmentMessage1.setTo(email);
+                enrollmentMessage1.setSubject("Thank You For Enrolling To The " + programName + "!");
+                enrollmentMessage1.setText("Hi " + firstName + ",\n\nPlease reply to this email by filling out the questions below:\n\n"
+                        + "1. What is your current fitness routine:\n"
+                        + "2. Current diet:\n"
+                        + "3. What are your current struggles:\n"
+                        + "4. Why do you want to start this journey:\n"
+                        + "5. Do you consider yourself a driven person:\n"
+                        + "6. Do you have gym access or you’re leaning towards home workouts:\n"
+                        + "7. Other information that you want me to know:\n\n"
+                        + "You can answer these questions briefly. This will help the team personalize the program for you!\n\n"
+                        + "Looking forward to hearing back from you!\n\n"
+                        + "Grit Dominate Team");
+
+                // Send the email to the user
+                mailSender.send(enrollmentMessage1);
             } catch (Exception e) {
                 // Handle the exception
                 e.printStackTrace(); // You can log the exception for debugging
