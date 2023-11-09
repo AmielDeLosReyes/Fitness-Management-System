@@ -2,12 +2,15 @@ package com.gs.grit.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer user_id;
+
 
 @Column(name = "first_name")
 private String first_name;

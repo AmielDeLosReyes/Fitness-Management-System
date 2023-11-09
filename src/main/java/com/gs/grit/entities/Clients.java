@@ -2,7 +2,6 @@ package com.gs.grit.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 
 @Entity
 @Table(name = "clients")
@@ -11,49 +10,51 @@ public class Clients {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
     private Integer client_id;
+
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
+
     @Column(name = "last_name")
-    private String last_name;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone_number")
-    private String phone_number;
+    private String lastName;
+
     @Column(name = "height")
     private String height;
+
     @Column(name = "weight")
     private String weight;
+
     @Column(name = "age")
     private String age;
+
     @Column(name = "sex")
     private String sex;
-    @Column(name = "experience_level")
-    private String experience_level;
-    @Column(name = "fitness_routine")
-    private String fitness_routine;
-    @Column(name = "current_diet")
-    private String current_diet;
+
+    @Column(name = "fitnessRoutine")
+    private String fitnessRoutine;
+
+    @Column(name = "diet")
+    private String diet;
+
     @Column(name = "injuries")
     private String injuries;
+
     @Column(name = "struggles")
     private String struggles;
-    @Column(name = "why_start_journey")
-    private String why_start_journey;
+
+    @Column(name = "whyStart")
+    private String whyStart;
+
     @Column(name = "driven")
     private String driven;
-    @Column(name = "other")
-    private String other;
 
-    @Column(name = "registration_date")
-    private String registration_date;
+    @Column(name = "gymAccess")
+    private String gymAccess;
 
-    public String getRegistration_date() {
-        return registration_date;
-    }
+    @Column(name = "otherInfo")
+    private String otherInfo;
 
-    public void setRegistration_date(String registration_date) {
-        this.registration_date = registration_date;
-    }
+    // Getters and setters, constructors, and other methods
+
 
     public Integer getClient_id() {
         return client_id;
@@ -63,36 +64,20 @@ public class Clients {
         this.client_id = client_id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone_number() {
-        return phone_number;
-    }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getHeight() {
@@ -127,28 +112,20 @@ public class Clients {
         this.sex = sex;
     }
 
-    public String getExperience_level() {
-        return experience_level;
+    public String getFitnessRoutine() {
+        return fitnessRoutine;
     }
 
-    public void setExperience_level(String experience_level) {
-        this.experience_level = experience_level;
+    public void setFitnessRoutine(String fitnessRoutine) {
+        this.fitnessRoutine = fitnessRoutine;
     }
 
-    public String getFitness_routine() {
-        return fitness_routine;
+    public String getDiet() {
+        return diet;
     }
 
-    public void setFitness_routine(String fitness_routine) {
-        this.fitness_routine = fitness_routine;
-    }
-
-    public String getCurrent_diet() {
-        return current_diet;
-    }
-
-    public void setCurrent_diet(String current_diet) {
-        this.current_diet = current_diet;
+    public void setDiet(String diet) {
+        this.diet = diet;
     }
 
     public String getInjuries() {
@@ -167,12 +144,12 @@ public class Clients {
         this.struggles = struggles;
     }
 
-    public String getWhy_start_journey() {
-        return why_start_journey;
+    public String getWhyStart() {
+        return whyStart;
     }
 
-    public void setWhy_start_journey(String why_start_journey) {
-        this.why_start_journey = why_start_journey;
+    public void setWhyStart(String whyStart) {
+        this.whyStart = whyStart;
     }
 
     public String getDriven() {
@@ -183,56 +160,44 @@ public class Clients {
         this.driven = driven;
     }
 
-    public String getOther() {
-        return other;
+    public String getGymAccess() {
+        return gymAccess;
     }
 
-    public void setOther(String other) {
-        this.other = other;
+    public void setGymAccess(String gymAccess) {
+        this.gymAccess = gymAccess;
     }
 
-    @Override
-    public String toString() {
-        return "Clients{" +
-                "client_id=" + client_id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", height='" + height + '\'' +
-                ", weight='" + weight + '\'' +
-                ", age='" + age + '\'' +
-                ", sex='" + sex + '\'' +
-                ", experience_level='" + experience_level + '\'' +
-                ", fitness_routine='" + fitness_routine + '\'' +
-                ", current_diet='" + current_diet + '\'' +
-                ", injuries='" + injuries + '\'' +
-                ", struggles='" + struggles + '\'' +
-                ", why_start_journey='" + why_start_journey + '\'' +
-                ", driven='" + driven + '\'' +
-                ", other='" + other + '\'' +
-                '}';
+    public String getOtherInfo() {
+        return otherInfo;
     }
 
-    public Clients(Integer client_id, String first_name, String last_name, String email, String phone_number, String height, String weight, String age, String sex, String experience_level, String fitness_routine, String current_diet, String injuries, String struggles, String why_start_journey, String driven, String other) {
-        this.client_id = client_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.phone_number = phone_number;
+    public void setOtherInfo(String otherInfo) {
+        this.otherInfo = otherInfo;
+    }
+
+    // Default constructor
+    public Clients() {
+    }
+
+    // Constructor without generated ID
+    public Clients(String firstName, String lastName, String height, String weight, String age, String sex, String fitnessRoutine, String diet, String injuries, String struggles, String whyStart, String driven, String gymAccess, String otherInfo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.height = height;
         this.weight = weight;
         this.age = age;
         this.sex = sex;
-        this.experience_level = experience_level;
-        this.fitness_routine = fitness_routine;
-        this.current_diet = current_diet;
+        this.fitnessRoutine = fitnessRoutine;
+        this.diet = diet;
         this.injuries = injuries;
         this.struggles = struggles;
-        this.why_start_journey = why_start_journey;
+        this.whyStart = whyStart;
         this.driven = driven;
-        this.other = other;
+        this.gymAccess = gymAccess;
+        this.otherInfo = otherInfo;
     }
-    public Clients(){
-    }
+
+    // Other constructors as needed
 }
+

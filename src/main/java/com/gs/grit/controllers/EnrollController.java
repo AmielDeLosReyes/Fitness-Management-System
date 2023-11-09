@@ -78,18 +78,13 @@ public class EnrollController {
                 // Create a SimpleMailMessage for the user
                 SimpleMailMessage enrollmentMessage1 = new SimpleMailMessage();
                 enrollmentMessage1.setTo(email);
-                enrollmentMessage1.setSubject("Thank You For Enrolling To The " + programName + "!");
-                enrollmentMessage1.setText("Hi " + firstName + ",\n\nPlease reply to this email by filling out the questions below:\n\n"
-                        + "1. What is your current fitness routine:\n"
-                        + "2. Current diet:\n"
-                        + "3. What are your current struggles:\n"
-                        + "4. Why do you want to start this journey:\n"
-                        + "5. Do you consider yourself a driven person:\n"
-                        + "6. Do you have gym access or you’re leaning towards home workouts:\n"
-                        + "7. Other information that you want me to know:\n\n"
+
+                String message = "Hi " + firstName + ",\n\nPlease fill out the form on this link: " + "https://grit-production.up.railway.app/clientForm" + "\n\n"
                         + "You can answer these questions briefly. This will help the team personalize the program for you!\n\n"
                         + "Looking forward to hearing back from you!\n\n"
-                        + "Grit Dominate Team");
+                        + "Grit Dominate Team";
+                enrollmentMessage1.setSubject("Thank You For Enrolling To The " + programName + "!");
+                enrollmentMessage1.setText(message);
 
                 // Send the email to the user
                 mailSender.send(enrollmentMessage1);

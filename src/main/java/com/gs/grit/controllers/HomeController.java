@@ -156,14 +156,26 @@ public class HomeController {
         return "contact";
     }
 
+    @GetMapping("/successClientForm")
+    public String successClientForm() {
+        return "successClientForm";
+    }
+
     @GetMapping("/adminLogin")
     public String signup(){
         return "adminLogin";
     }
 
     @GetMapping("/clientForm")
-    public String clientSignUp() {
-        return "clientRegistrationForm";
+    public String clientSignUp(HttpSession httpSession, Model model) {
+        User user = (User) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
+        if (user != null) {
+
+            LOGGER.info("User is logged in: " + user.getFirst_name());
+            return "clientRegistrationForm";
+        }
+        return "clientLogin";
     }
 
 //    @GetMapping("/admin/profile")

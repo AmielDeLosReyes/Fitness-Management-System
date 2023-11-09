@@ -59,6 +59,7 @@
 	<div id="mobile-menu-wrap"></div>
 	<div class="canvas-social">
 		<a href="/userLogin"><i class="fa fa-user"></i></a>
+
 		<a href="https://www.tiktok.com/@grit.dominate?lang=en" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
 		<a href="https://www.youtube.com/channel/UCUYuMr4KH_-w4cTMOZZp8CA" target="_blank"><i class="fa fa-youtube-play"></i></a>
 		<a href="https://www.instagram.com/grit.dominate/" target="_blank"><i class="fa fa-instagram"></i></a>
@@ -81,7 +82,7 @@
 			<div class="col-lg-6">
 				<nav class="nav-menu">
 					<ul>
-						<li><a href="/">Home</a></li>
+						<li class="active"><a href="/">Home</a></li>
 						<li><a href="/about-us">About Us</a></li>
 						<!--                            <li><a href="/class-details">Programs</a></li>-->
 						<li><a href="/services">Services</a></li>
@@ -97,7 +98,7 @@
 								<!--                                    <li><a href="/404">404</a></li>-->
 							</ul>
 						</li>
-						<li class="active"><a href="#">Registration</a></li><li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
+						<li><a th:href="${user == null ? '/userRegistration' : '/userLogin'}">Registration</a></li>
 
 						<li><a href="/userLogin">Login</a></li>
 					</ul>
@@ -174,15 +175,10 @@
 
 			<div class="col-lg-6">
 				<div class="leave-comment">
-					<form th:action="@{/sendEmail}" method="post">
-						<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-						<input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+					<form th:if="${user != null}" th:action="@{/clientFormComplete}" method="post">
+						<input type="text" id="firstName" name="firstName" placeholder="First Name" required readonly="readonly" th:value="${user.first_name}">
+						<input type="text" id="lastName" name="lastName" placeholder="Last Name" required readonly="readonly" th:value="${user.last_name}">
 
-						<span id="email-error" style="color: red;"></span>
-						<input type="email" id="email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" title="Enter a valid email address" required>
-
-
-						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
 						<div class="row">
 							<div class="col-sm-6">
 								<input type="text" id="height" name="height" placeholder="Height / cm">
@@ -197,36 +193,25 @@
 								<input type="text" id="sex" name="sex" placeholder="Sex">
 							</div>
 						</div>
-						<input type="text" id="explainExperience" name="explainExperience" placeholder="Explain to me your experience level">
 
 						<input type="text" id="fitnessRoutine" name="fitnessRoutine" placeholder="What is your current fitness routine?">
 						<input type="text" id="diet" name="diet" placeholder="What does your current diet look like?">
-						<input type="text" id="injuries" name="injuries"placeholder="Any previous/present injuries? Briefly state">
+						<input type="text" id="injuries" name="injuries" placeholder="Any previous/present injuries? Briefly state">
 						<input type="text" id="struggles" name="struggles" placeholder="What are your current struggles?">
 						<input type="text" id="whyStart" name="whyStart" placeholder="Why do you want to start this journey?">
 						<input type="text" id="driven" name="driven" placeholder="Do you consider yourself a driven person?">
 
-						<textarea id="otherInfo" name="otherInfo" placeholder="Other information you want me to know"></textarea>
-						<button type="submit" onclick="validateEmail(); return true;">Submit</button>
-						<script>
-							function validateEmail() {
-								var emailInput = document.getElementById('email');
-								var emailError = document.getElementById('email-error');
-								var email = emailInput.value;
+						<input type="text" id="gymAccess" name="gymAccess" placeholder="Do you have gym access or you’re leaning towards home workouts?">
 
-								var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+						<input type="text" id="otherInfo" name="otherInfo" placeholder="Other information you want me to know?">
 
-								if (!emailPattern.test(email)) {
-									emailError.textContent = 'Enter a valid email address. -> (example@gmail.com)';
-									emailInput.focus();
-									return false;
-								} else {
-									emailError.textContent = '';
-									return true;
-								}
-							}
-						</script>
+						<button type="submit">Submit</button>
+
 					</form>
+					<!-- Redirect to userLogin if user is null -->
+					<div th:if="${user == null}">
+						<p>Please <a href="/clientLogin">log in</a> to access the client form.</p>
+					</div>
 				</div>
 			</div>
 		</div>
