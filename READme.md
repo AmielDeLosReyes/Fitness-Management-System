@@ -4,12 +4,12 @@ Welcome to Grit Dominate, where fitness meets innovation! Grit Dominate is not j
 
 
 ## Project Images
-![1](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/1.png)
-![2](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/2.png)
-![5](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/3.png)
-![6](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/4.png)
-![3](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/5.png)
-![4](https://github.com/AmielDeLosReyes/Grit-Dominate/pages/6.png)
+![1](./pages/1.png)
+![2](./pages/2.png)
+![5](./pages/3.png)
+![6](./pages/4.png)
+![3](./pages/5.png)
+![4](./pages/6.png)
 
 ## Features
 
