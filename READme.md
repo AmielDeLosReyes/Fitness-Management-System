@@ -32,18 +32,6 @@ Embark on your fitness journey with Grit Dominate by following these simple step
 
 Grit Dominate is not just a project; it's a mission to revolutionize the fitness experience. If you're passionate about fitness, technology, and community building, we invite you to join us.
 
-### Contributing
-
-If you're excited about contributing to Grit Dominate, please check our [Contribution Guidelines](CONTRIBUTING.md) to get started.
-
-## Showcase
-
-Explore the Grit Dominate experience through our [Portfolio](https://your-portfolio-link.com).
-
-## License
-
-This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## Contact
 
 For inquiries and collaboration opportunities, reach out to us at [gritdominate@gmail.com].
