@@ -4,12 +4,12 @@ Welcome to Grit Dominate, where fitness meets innovation! Grit Dominate is not j
 
 
 ## Project Images
-![1](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/f7cadabf-a755-4f09-b3d5-7f8f50a84309.png)
-![2](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/232dfd4f-9a60-4641-80eb-df2ee256c9f1.png)
-![5](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/a173d6ec-10ec-45a1-ac7d-e65faafba76c.png)
-![6](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/33560110-96e3-4218-ad59-514c83b85f38.png)
-![3](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/6a1d9dd7-b881-43bb-be03-fab369b0fbfe.png)
-![4](https://github.com/AmielDeLosReyes/Grit-Dominate/blob/main/assets/89047257/c730a312-ee6a-4d5c-9481-4863aea3c849.png)
+![1](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/1.png)
+![2](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/2.png)
+![5](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/3.png)
+![6](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/4.png)
+![3](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/5.png)
+![4](https://github.com/AmielDeLosReyes/Grit-Dominate/All Pages/6.png)
 
 ## Features
 
