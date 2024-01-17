@@ -1,11 +1,5 @@
 # Grit Dominate - Empowering Fitness Enthusiasts
-
 Welcome to Grit Dominate, where fitness meets innovation! Grit Dominate is not just a fitness website; it's a dynamic platform designed to empower users in their unique fitness journeys.
-
-
-## Project Images
-<img src="./pages/1.png" width="400"> <img src="./pages/2.png" width="400"> <img src="./pages/3.png" width="400"> 
-<img src="./pages/4.png" width="400"> <img src="./pages/5.png" width="400"> <img src="./pages/6.png" width="400">
 
 ## Features
 
@@ -14,6 +8,10 @@ Welcome to Grit Dominate, where fitness meets innovation! Grit Dominate is not j
 - **Nutrition Guides:** Fuel your workouts with expert-curated nutrition guides to optimize your performance.
 - **Community Engagement:** Connect with fellow fitness enthusiasts, share your achievements, and stay motivated as a community.
 - **Responsive Design:** Seamlessly experience Grit Dominate on various devices with our responsive and modern design.
+
+## Project Images
+<img src="./pages/1.png" width="400"> <img src="./pages/2.png" width="400"> <img src="./pages/3.png" width="400"> 
+<img src="./pages/4.png" width="400"> <img src="./pages/5.png" width="400"> <img src="./pages/6.png" width="400">
 
 ## Tech Stack
 
