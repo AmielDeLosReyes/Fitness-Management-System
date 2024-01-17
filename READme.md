@@ -4,8 +4,8 @@ Welcome to Grit Dominate, where fitness meets innovation! Grit Dominate is not j
 
 
 ## Project Images
-<img src="./pages/1.png" width="200"> <img src="./pages/2.png" width="200"> <img src="./pages/3.png" width="200"> 
-<img src="./pages/4.png" width="200"> <img src="./pages/5.png" width="200"> <img src="./pages/6.png" width="200">
+<img src="./pages/1.png" width="400"> <img src="./pages/2.png" width="400"> <img src="./pages/3.png" width="400"> 
+<img src="./pages/4.png" width="400"> <img src="./pages/5.png" width="400"> <img src="./pages/6.png" width="400">
 
 ## Features
 
