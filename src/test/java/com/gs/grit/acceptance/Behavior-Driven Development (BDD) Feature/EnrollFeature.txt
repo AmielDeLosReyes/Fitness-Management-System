@@ -1,0 +1,9 @@
+Feature: Enroll User in Program
+
+  Scenario: User successfully enrolls in a program
+    Given the user is on the enrollment page
+    When the user provides valid programId
+    And submits the enrollment form
+    Then the user should see a success message
+    And the enrollment email should be sent to the admin
+    And the confirmation email should be sent to the user

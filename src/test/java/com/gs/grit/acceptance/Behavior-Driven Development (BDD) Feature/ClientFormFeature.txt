@@ -1,0 +1,9 @@
+Feature: Client Form Submission
+
+  Scenario: User submits valid client information
+    Given the user is on the client form
+    When the user fills out the client form with valid information
+    And submits the form
+    Then the user should see a success message
+    And an email should be sent to the user confirming the form submission
+    And an email should be sent to the admin notifying about the new client form submission

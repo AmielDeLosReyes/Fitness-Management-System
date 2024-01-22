@@ -1,0 +1,14 @@
+Feature: Newsletter Signup via EmailController
+
+  Scenario: User signs up for the newsletter
+    Given the user is on the newsletter signup page
+    When the user submits a valid email address for newsletter signup
+    Then the user should be redirected to the success page
+    And the user should receive a confirmation email
+    And the admin should receive a notification email about the new newsletter signup
+
+  Scenario: User attempts to sign up with a duplicate email address
+    Given the user is on the newsletter signup page
+    And the user's email is already registered for the newsletter
+    When the user submits the email address
+    Then the user should be redirected to the error page for duplicate email

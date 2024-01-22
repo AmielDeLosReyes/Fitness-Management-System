@@ -1,0 +1,13 @@
+Feature: BMI Calculator
+
+  Scenario: Calculate BMI with valid input
+    Given the user is on the BMI calculator page
+    When the user enters valid height and weight
+    And submits the BMI calculator form
+    Then the user should see the calculated BMI
+
+  Scenario: Calculate BMI with invalid input
+    Given the user is on the BMI calculator page
+    When the user enters invalid height and weight
+    And submits the BMI calculator form
+    Then an error message should be displayed
